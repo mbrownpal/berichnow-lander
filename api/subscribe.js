@@ -17,7 +17,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.KIT_API_SECRET}`,
+        'X-Kit-Api-Key': process.env.KIT_API_SECRET,
       },
       body: JSON.stringify({
         email_address: email,
