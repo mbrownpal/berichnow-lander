@@ -1,8 +1,10 @@
 {
+  "buildCommand": "echo 'No build needed - serving static files'",
+  "outputDirectory": "public",
   "rewrites": [
     {
       "source": "/",
-      "destination": "/public/index.html"
+      "destination": "/index.html"
     }
   ]
 }
