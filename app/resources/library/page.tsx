@@ -40,8 +40,11 @@ export default async function ResourceLibrary() {
                 <p style={{ fontSize: '18px', color: 'var(--text-body)', marginBottom: '12px' }}>
                   Map the life you actually want and price it out month by month until you arrive at your Perfect Burn Rate.
                 </p>
-                <a href="/resources/Unbreakable-Year-Workbook.pdf" download style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--copper)', textDecoration: 'none' }}>
-                  Download →
+                <a href="/resources/unbreakable-year.html" target="_blank" style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--copper)', textDecoration: 'none' }}>
+                  Open Workbook →
+                </a>
+                <a href="/resources/Unbreakable-Year-Workbook.pdf" download style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--text-subtle)', textDecoration: 'none', marginLeft: '16px' }}>
+                  Download PDF
                 </a>
               </li>
               <li style={{ marginBottom: '24px' }}>
