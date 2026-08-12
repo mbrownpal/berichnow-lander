@@ -92,12 +92,12 @@ export default async function ResourceLibrary() {
             <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
               <li style={{ marginBottom: '24px' }}>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '21px', color: 'var(--copper)', marginBottom: '8px' }}>
-                  Annual Planning Stack
+                  Bonus Chapters
                 </h3>
                 <p style={{ fontSize: '18px', color: 'var(--text-body)', marginBottom: '12px' }}>
-                  Description pending.
+                  Coming soon.
                 </p>
-                <a href="/resources/Annual-Planning-Stack.pdf" download style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--copper)', textDecoration: 'none' }}>
+                <a href="/resources/Bonus-Chapters.pdf" download style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--copper)', textDecoration: 'none' }}>
                   Download →
                 </a>
               </li>
@@ -106,7 +106,7 @@ export default async function ResourceLibrary() {
                   House Manager Playbook
                 </h3>
                 <p style={{ fontSize: '18px', color: 'var(--text-body)', marginBottom: '12px' }}>
-                  Description pending.
+                  Coming soon.
                 </p>
                 <a href="/resources/House-Manager-Playbook.pdf" download style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--copper)', textDecoration: 'none' }}>
                   Download →
