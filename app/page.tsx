@@ -105,12 +105,26 @@ export default function Home() {
           </h1>
           <p className="subtitle">How to want everything you have. Coming Fall 2026.</p>
           <div className="cta-block">
-            <p className="cta-text">
-              Get the companion workbooks and early access when the book launches.
+            <p className="cta-text" style={{ marginBottom: '12px', fontSize: '17px' }}>
+              Get the first chapter free.
             </p>
-            <Link href="/resources" className="btn">
-              Get the Workbooks
+            <Link href="#" className="btn" style={{ marginBottom: '16px' }}>
+              Send Me Chapter One
             </Link>
+            <p style={{ fontSize: '14px', color: 'var(--text-subtle)', textAlign: 'center' }}>
+              You'll also be first to know when the book drops. No spam. Just the book.
+            </p>
+          </div>
+          <div style={{ marginTop: '48px', paddingTop: '32px', borderTop: '1px solid rgba(184, 115, 51, 0.15)' }}>
+            <p style={{ fontSize: '16px', color: 'var(--text-body)', marginBottom: '16px' }}>
+              Can't wait for the book?
+            </p>
+            <p style={{ fontSize: '15px', color: 'var(--text-subtle)', marginBottom: '12px', lineHeight: '1.6' }}>
+              The Freedom Audit is the companion tool that maps where you actually stand across the six dimensions of a rich life.
+            </p>
+            <a href="https://freedomaudit.berichnow.com" target="_blank" rel="noopener" style={{ fontSize: '14px', color: 'var(--copper)', textDecoration: 'none' }}>
+              Take the Freedom Audit →
+            </a>
           </div>
         </div>
         <div className="cover-wrap">
