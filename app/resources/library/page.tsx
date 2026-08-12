@@ -1,4 +1,15 @@
-export default function ResourceLibrary() {
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
+export default async function ResourceLibrary() {
+  // Server-side cookie check
+  const cookieStore = await cookies();
+  const hasAccess = cookieStore.get('library_access')?.value === 'true';
+
+  if (!hasAccess) {
+    redirect('/resources');
+  }
+
   return (
     <>
       <div className="grain"></div>
