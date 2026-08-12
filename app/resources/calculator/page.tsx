@@ -502,7 +502,7 @@ export default function EscapeVelocityCalculator() {
 
         <div className="results dormant" id="results">
           <p className="prompt">
-            Enter your Perfect Burn Rate below
+            Enter your Ideal Spend below
             <br />
             and your number appears here
           </p>
@@ -575,7 +575,7 @@ export default function EscapeVelocityCalculator() {
           </p>
           <div className="field">
             <label>
-              Perfect Burn Rate <small>Monthly cost of the life you actually want</small>
+              Ideal Spend <small>Monthly cost of the life you actually want</small>
             </label>
             <div className="money">
               <span>$</span>

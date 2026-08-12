@@ -38,7 +38,7 @@ export default async function ResourceLibrary() {
                   01. The Unbreakable Year
                 </h3>
                 <p style={{ fontSize: '18px', color: 'var(--text-body)', marginBottom: '12px' }}>
-                  Map the life you actually want and price it out month by month until you arrive at your Perfect Burn Rate.
+                  Map the life you actually want and price it out month by month until you arrive at your Ideal Spend.
                 </p>
                 <a href="/resources/unbreakable-year.html" target="_blank" style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--copper)', textDecoration: 'none' }}>
                   Open Workbook →
