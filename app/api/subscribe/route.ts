@@ -1,41 +1,54 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
+export const maxDuration = 30; // seconds
+
+export async function POST(req: NextRequest) {
   try {
-    const { email } = await request.json();
+    const { email } = await req.json();
 
-    if (!email || !email.includes('@')) {
-      return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: 'Valid email required' }, { status: 400 });
     }
 
-    const kitApiKey = process.env.KIT_API_KEY;
-    if (!kitApiKey) {
-      console.error('KIT_API_KEY not configured');
-      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+    const KIT_API_KEY = process.env.KIT_API_KEY;
+    if (!KIT_API_KEY) {
+      console.error('[Homepage] KIT_API_KEY not configured');
+      return NextResponse.json({ error: 'API key not configured' }, { status: 500 });
     }
 
-    // Subscribe to Kit
-    const response = await fetch('https://api.convertkit.com/v3/forms/7534577/subscribe', {
+    // Add subscriber with custom field for automation
+    const kitResponse = await fetch('https://api.kit.com/v4/subscribers', {
       method: 'POST',
       headers: {
+        'X-Kit-Api-Key': KIT_API_KEY,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        api_key: kitApiKey,
-        email: email,
-        tags: [7719949], // "Be Rich Now Landing" tag
+        email_address: email,
+        fields: {
+          rh_source: 'homepage-chapter-one',
+        },
       }),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Kit API error:', response.status, errorText);
-      return NextResponse.json({ error: 'Subscription failed' }, { status: 500 });
+    if (!kitResponse.ok) {
+      const errorData = await kitResponse.json();
+      console.error('[Homepage] Kit API error:', errorData);
+      return NextResponse.json(
+        { error: 'Failed to subscribe. Please try again.' },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json({ success: true });
+    const kitData = await kitResponse.json();
+    console.log('[Homepage] Successfully added subscriber:', email, 'with source: homepage-chapter-one');
+
+    return NextResponse.json({ success: true, subscriber: kitData });
   } catch (error) {
-    console.error('Subscribe error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    console.error('[Homepage] Subscribe error:', error);
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Failed to subscribe' },
+      { status: 500 }
+    );
   }
 }

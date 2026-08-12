@@ -163,18 +163,6 @@ export default function Home() {
           letter-spacing: -0.005em;
         }
 
-        .hero-pq q::before {
-          content: '\\201C';
-          color: var(--copper);
-          opacity: 0.7;
-          margin-right: 0.04em;
-        }
-        .hero-pq q::after {
-          content: '\\201D';
-          color: var(--copper);
-          opacity: 0.7;
-          margin-left: 0.04em;
-        }
 
         .hero-book {
           position: relative;
@@ -366,7 +354,7 @@ export default function Home() {
         .success-message {
           text-align: center;
           font-family: var(--font-body);
-          font-size: 18px;
+          font-size: 19px;
           color: var(--rosegold);
           padding: 20px;
           background: rgba(184, 115, 51, 0.08);
@@ -410,7 +398,7 @@ export default function Home() {
 
         .secondary .body {
           font-family: var(--font-body);
-          font-size: 18px;
+          font-size: 19px;
           color: var(--text-body);
           line-height: 1.75;
           margin-bottom: 22px;
@@ -520,7 +508,7 @@ export default function Home() {
             font-size: 42px;
           }
           .hero-copy .subtitle {
-            font-size: 18px;
+            font-size: 19px;
             margin-bottom: 22px;
           }
           .hero-copy .author {
@@ -529,7 +517,8 @@ export default function Home() {
             margin-bottom: 32px;
           }
           .hero-copy .opening {
-            font-size: 18px;
+            font-size: 19px;
+            font-size: 19px;
           }
           .hero-pq {
             margin-top: 18px;
@@ -546,7 +535,8 @@ export default function Home() {
             padding: 0 26px;
           }
           .col p {
-            font-size: 18px;
+            font-size: 19px;
+            font-size: 19px;
             line-height: 1.75;
             margin-bottom: 24px;
           }
@@ -566,7 +556,7 @@ export default function Home() {
             margin-top: 72px;
           }
           .secondary .heading {
-            font-size: 18px;
+            font-size: 19px;
           }
           .secondary .body {
             font-size: 17px;
@@ -606,7 +596,7 @@ export default function Home() {
               down and get quiet, the question haunts you:
             </p>
             <div className="hero-pq">
-              <q>Is this really it?</q>
+              <q>"Is this really it?"</q>
             </div>
           </div>
 
