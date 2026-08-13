@@ -43,6 +43,26 @@ export async function POST(req: NextRequest) {
     const kitData = await kitResponse.json();
     console.log('[Resources] Successfully added subscriber:', email, 'with source: book-resources');
 
+    // Add "Book Resources" tag (ID: 22420144) to trigger sequence automation
+    const tagResponse = await fetch('https://api.kit.com/v4/tags/22420144/subscribers', {
+      method: 'POST',
+      headers: {
+        'X-Kit-Api-Key': KIT_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email_address: email,
+      }),
+    });
+
+    if (tagResponse.ok) {
+      console.log('[Resources] Successfully added "Book Resources" tag to:', email);
+    } else {
+      // Log but don't fail the request if tagging fails
+      const tagError = await tagResponse.json();
+      console.error('[Resources] Failed to add tag:', tagError);
+    }
+
     return NextResponse.json({ success: true, subscriber: kitData });
   } catch (error) {
     console.error('[Resources] Subscribe error:', error);
