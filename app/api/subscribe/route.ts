@@ -38,6 +38,7 @@ export async function POST(req: NextRequest) {
         fields: {
           rh_source: 'homepage-chapter-one',
         },
+        tags: ['free-chapter'],
       }),
     });
 
