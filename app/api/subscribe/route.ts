@@ -38,7 +38,6 @@ export async function POST(req: NextRequest) {
         fields: {
           rh_source: 'homepage-chapter-one',
         },
-        tags: ['free-chapter'],
       }),
     });
 
@@ -52,7 +51,57 @@ export async function POST(req: NextRequest) {
     }
 
     const kitData = await kitResponse.json();
-    console.log('[Homepage] Kit subscriber created:', email);
+    const subscriberId = kitData.subscriber?.id;
+    console.log('[Homepage] Kit subscriber created:', email, 'ID:', subscriberId);
+
+    // 1b. Tag the subscriber with 'free-chapter' tag
+    // First, get or create the tag
+    const tagName = 'free-chapter';
+    try {
+      // Get all tags to find the 'free-chapter' tag ID
+      const tagsResponse = await fetch('https://api.kit.com/v4/tags', {
+        headers: { 'X-Kit-Api-Key': KIT_API_KEY },
+      });
+      
+      let tagId;
+      if (tagsResponse.ok) {
+        const tagsData = await tagsResponse.json();
+        const existingTag = tagsData.tags?.find((t: any) => t.name === tagName);
+        tagId = existingTag?.id;
+      }
+
+      // If tag doesn't exist, create it
+      if (!tagId) {
+        const createTagResponse = await fetch('https://api.kit.com/v4/tags', {
+          method: 'POST',
+          headers: {
+            'X-Kit-Api-Key': KIT_API_KEY,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: tagName }),
+        });
+        if (createTagResponse.ok) {
+          const newTag = await createTagResponse.json();
+          tagId = newTag.tag?.id;
+        }
+      }
+
+      // Apply the tag to the subscriber
+      if (tagId && subscriberId) {
+        await fetch(`https://api.kit.com/v4/tags/${tagId}/subscribers/${subscriberId}`, {
+          method: 'POST',
+          headers: {
+            'X-Kit-Api-Key': KIT_API_KEY,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({}),
+        });
+        console.log('[Homepage] Kit subscriber tagged with:', tagName);
+      }
+    } catch (tagError) {
+      console.error('[Homepage] Kit tagging error:', tagError);
+      // Non-critical - continue
+    }
 
     // 2. Fire Resend Automation event (triggers 3-email sequence)
     try {
