@@ -62,12 +62,12 @@ export default function Home() {
         .hero {
           max-width: 1240px;
           margin: 0 auto;
-          padding: 64px 56px 80px;
+          padding: 64px 56px 40px;
           display: grid;
           grid-template-columns: 1fr 1.05fr;
           gap: 80px;
           align-items: center;
-          min-height: 100vh;
+          min-height: 85vh;
         }
 
         .hero-copy {
@@ -146,6 +146,7 @@ export default function Home() {
 
         .hero-pq {
           margin-top: 28px;
+          margin-bottom: 48px;
           padding-top: 24px;
           border-top: 1px solid var(--divider);
           max-width: 520px;
@@ -588,7 +589,7 @@ export default function Home() {
             </h1>
             <p className="subtitle">How to want everything you have.</p>
             <div className="author">
-              <span className="by">A book by</span>Mike Brown
+              <span className="by">A book by</span>Michael Winslow Brown
             </div>
             <p className="opening">
               You've spent years building the life you're supposed to want. You did all the
@@ -601,7 +602,7 @@ export default function Home() {
           </div>
 
           <div className="hero-book">
-            <img className="book" src="/be-rich-now-cover.PNG" alt="Be Rich Now — Mike Brown" />
+            <img className="book" src="/be-rich-now-cover-new.jpg" alt="Be Rich Now — Michael Winslow Brown" />
           </div>
         </header>
 
