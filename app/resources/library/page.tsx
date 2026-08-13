@@ -129,7 +129,7 @@ export default async function ResourceLibrary() {
               It has had a lifetime to disguise itself as ordinary good judgment, which is why you can spot the same pattern in a friend inside of four minutes and miss it in yourself for thirty years. A room of people doing this work will name what you cannot, and you will do the same for them. Learn more about the community and take the next step on your journey.
             </p>
             <div style={{ textAlign: 'center' }}>
-              <a href="https://unbreakablewealth.com/about-us/" target="_blank" rel="noopener" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bg)', background: '#9a5b34', padding: '14px 28px', textDecoration: 'none', transition: 'all 0.3s ease', border: '1px solid #9a5b34' }}>
+              <a href="/mastermind" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bg)', background: '#9a5b34', padding: '14px 28px', textDecoration: 'none', transition: 'all 0.3s ease', border: '1px solid #9a5b34' }}>
                 About Unbreakable Wealth
               </a>
             </div>
