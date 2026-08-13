@@ -1,0 +1,1458 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+
+@page { size: 8.5in 11in; margin: 0; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body { margin:0; padding:0; }
+body {
+  font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", "URW Palladio L", Georgia, serif;
+  color: #1b1a17;
+  background: #fbf9f5;
+}
+.page {
+  width: 8.5in; height: 11in; padding: 0.95in 1.05in 0.8in;
+  background: #fbf9f5; position: relative; overflow: hidden;
+  page-break-after: always; break-after: page;
+}
+.page:last-child { page-break-after: auto; }
+
+.folio { position:absolute; bottom:0.52in; left:1.05in; right:1.05in;
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:6.6pt;
+  letter-spacing:0.14em; text-transform:uppercase; color:#a89f90; }
+.folio .fnum { font-family:Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif; font-size:9pt; letter-spacing:0; color:#8c8171; }
+
+/* ---------- typography ---------- */
+.eyebrow { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.4pt;
+  letter-spacing:0.24em; text-transform:uppercase; color:#9a5b34; margin-bottom:0.22in; }
+.eyebrow.dim { color:#a89f90; }
+.h-lead { font-size:27pt; line-height:1.14; font-weight:normal; margin:0 0 0.30in;
+  letter-spacing:-0.008em; }
+.h-lead.big { font-size:34pt; line-height:1.1; }
+.opener { margin-bottom:0.06in; }
+.opener.center, .body.center { text-align:center; }
+.body p { font-size:10.8pt; line-height:1.62; margin:0 0 0.155in; }
+.body p.lede { font-size:12pt; line-height:1.55; color:#3a362f; margin-bottom:0.22in; }
+em { font-style:italic; }
+.footnote { font-size:9pt; line-height:1.5; color:#8c8171; font-style:italic; margin-top:0.2in; }
+.footnote.center { text-align:center; }
+
+/* ---------- cover ---------- */
+.cover-page { padding:0; }
+.cover { width:100%; height:100%; background:#1b1a17; color:#f3ede2; padding:0.5in; }
+.cover-frame { width:100%; height:100%; border:0.8pt solid #6b5c46;
+  padding:0.85in 0.9in; display:flex; flex-direction:column; justify-content:space-between; }
+.cover-top .eyebrow { color:#c08a5e; margin:0; }
+.cover-title { font-size:52pt; line-height:1.02; font-weight:normal; margin:0;
+  letter-spacing:-0.018em; color:#f6f1e7; }
+.cover-rule { width:1.1in; height:1.4pt; background:#9a5b34; margin:0.36in 0 0.3in; }
+.cover-sub { font-size:13pt; line-height:1.5; color:#bdb2a0; font-style:italic; margin:0; }
+.cover-author { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:9.5pt;
+  letter-spacing:0.2em; text-transform:uppercase; color:#f3ede2; margin-bottom:0.16in; }
+.cover-bottom .eyebrow { margin:0; color:#7d7263; }
+
+/* ---------- dividers ---------- */
+.divider-page { padding:0; }
+.divider { width:100%; height:100%; background:#211f1b; color:#f2ece1;
+  padding:2.5in 1.5in 1.4in; }
+.divnum { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:8pt;
+  letter-spacing:0.3em; text-transform:uppercase; color:#c08a5e; margin-bottom:0.3in; }
+.divtitle { font-size:38pt; line-height:1.08; font-weight:normal; margin:0;
+  letter-spacing:-0.015em; }
+.divrule { width:0.9in; height:1.2pt; background:#9a5b34; margin:0.34in 0 0.26in; }
+.divsub { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.6pt;
+  letter-spacing:0.22em; text-transform:uppercase; color:#9c9184; margin:0 0 0.34in; }
+.divbody { font-size:11.5pt; line-height:1.62; color:#cabfae; max-width:4.7in; margin:0; }
+
+/* ---------- callouts ---------- */
+.callout { border-left:1.6pt solid #9a5b34; padding:0.06in 0 0.06in 0.24in;
+  margin:0.32in 0 0.1in; }
+.callout.tight { margin-top:0.24in; }
+.callout-label { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7pt;
+  letter-spacing:0.2em; text-transform:uppercase; color:#9a5b34; margin-bottom:0.08in; }
+.callout-body { font-size:11pt; line-height:1.55; margin:0; font-style:italic; color:#33302a; }
+
+/* ---------- instructions ---------- */
+.instr { margin-bottom:0.185in; position:relative; padding-left:0.52in; }
+.instr .num { position:absolute; left:0; top:0.015in; font-size:12pt; color:#c9a882;
+  font-family:Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif; }
+.instr h4 { font-size:11.6pt; margin:0 0 0.045in; font-weight:normal; letter-spacing:-0.004em; }
+.instr p { font-size:10pt; line-height:1.5; margin:0; color:#4a453c; }
+
+/* ---------- write-in rules ---------- */
+.rules { margin-top:0.18in; }
+.rule { border-bottom:0.5pt solid #ddd5c7; }
+.prompt { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:8.2pt;
+  letter-spacing:0.06em; color:#6d6455; margin:0.26in 0 0.02in; line-height:1.45; }
+
+/* ---------- question pages ---------- */
+.qhead { display:flex; gap:0.3in; align-items:flex-start; margin-bottom:0.1in; }
+.qnum { font-size:22pt; color:#cbb08c; line-height:1; padding-top:0.03in; min-width:0.55in; }
+.qtext h3 { font-size:16.5pt; line-height:1.28; font-weight:normal; margin:0 0 0.09in;
+  letter-spacing:-0.006em; }
+.qsub { font-size:10pt; line-height:1.52; color:#7d7364; margin:0; font-style:italic; }
+
+/* ---------- box ---------- */
+.box { border:0.7pt solid #ded6c8; background:#f7f4ee; margin:0.22in 0 0.1in;
+  position:relative; }
+.boxlabel { position:absolute; top:0.1in; left:0.14in;
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7pt;
+  letter-spacing:0.18em; text-transform:uppercase; color:#b3a894; }
+
+/* ---------- one word ---------- */
+.oneword { border-bottom:1.2pt solid #1b1a17; width:4.2in; height:0.95in; margin:0.5in auto 0.18in; }
+.datestamp { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.6pt;
+  letter-spacing:0.16em; text-transform:uppercase; color:#a2988a; }
+.dline { display:inline-block; width:1.6in; border-bottom:0.6pt solid #ccc3b3; margin-left:0.08in; }
+
+/* ---------- ledger ---------- */
+.ledger { display:flex; gap:0.38in; margin-top:0.22in; }
+.ledger-col { flex:1; }
+.ledger-head { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.6pt;
+  letter-spacing:0.18em; text-transform:uppercase; color:#9a5b34;
+  border-bottom:1pt solid #9a5b34; padding-bottom:0.07in; }
+.ledger-sub { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.2pt;
+  letter-spacing:0.1em; color:#8c8272; margin-top:0.14in; }
+
+/* ---------- story cards ---------- */
+.storycard { height:100%; display:flex; flex-direction:column; }
+.story-top { border-bottom:0.7pt solid #ded6c8; padding-bottom:0.16in; margin-bottom:0.2in; }
+.story-num { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.2pt;
+  letter-spacing:0.24em; text-transform:uppercase; color:#b09a7c; margin-bottom:0.11in; }
+.story-name { font-size:25pt; line-height:1.12; font-weight:normal; margin:0;
+  letter-spacing:-0.012em; }
+.story-voice { font-size:13pt; line-height:1.5; font-style:italic; color:#9a5b34;
+  border-left:1.6pt solid #e0c9ad; padding-left:0.22in; margin-bottom:0.24in; }
+.story-block { margin-bottom:0.17in; }
+.story-label { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7pt;
+  letter-spacing:0.2em; text-transform:uppercase; color:#9a9082; margin-bottom:0.06in; }
+.story-block p { font-size:10.4pt; line-height:1.56; margin:0; }
+.story-foot { margin-top:0.04in; padding-top:0.14in; border-top:0.5pt solid #e5ded1; }
+.scale { display:flex; gap:0.1in; margin-top:0.09in; }
+.dot { width:0.28in; height:0.28in; border:0.6pt solid #ccc3b3; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; font-size:8pt; color:#b3a894; }
+.story-prompt { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:8pt;
+  color:#6d6455; margin:0.2in 0 0; }
+
+/* ---------- rank ---------- */
+.rank { margin:0.26in 0 0.1in; }
+.rank-row { display:flex; align-items:flex-end; gap:0.2in; margin-bottom:0.1in; }
+.rank-n { font-size:15pt; color:#c9a882; width:0.24in; }
+.rank-line { flex:1; border-bottom:0.7pt solid #d5ccbc; height:0.36in; }
+.chosen { border:0.8pt solid #9a5b34; background:#f8f3ea; padding:0.2in 0.24in 0.24in;
+  margin-top:0.26in; }
+.chosen-label { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.2pt;
+  letter-spacing:0.2em; text-transform:uppercase; color:#9a5b34; margin-bottom:0.16in; }
+.chosen-line { border-bottom:0.8pt solid #cbbca4; height:0.3in; }
+
+/* ---------- trace ---------- */
+.trace { margin-top:0.2in; }
+.trace-row { display:flex; gap:0.22in; position:relative; padding-bottom:0.14in; }
+.trace-dot { width:0.11in; height:0.11in; border-radius:50%; background:#9a5b34;
+  margin-top:0.07in; flex:0 0 auto; position:relative; }
+.trace-row:not(.last) .trace-dot::after { content:""; position:absolute; left:50%; top:0.11in;
+  width:0.6pt; height:1.55in; background:#e0d7c7; }
+.trace-body { flex:1; }
+.trace-label { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.6pt;
+  letter-spacing:0.1em; color:#6d6455; }
+
+/* ---------- drives ---------- */
+.drive-num { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.4pt;
+  letter-spacing:0.26em; color:#b09a7c; margin-bottom:0.16in; }
+.drive-name { font-size:30pt; font-weight:normal; margin:0; letter-spacing:-0.014em; }
+.drive-rule { width:0.8in; height:1.2pt; background:#9a5b34; margin:0.24in 0 0.22in; }
+.drive-def { font-size:12pt; line-height:1.56; margin:0 0 0.24in; color:#33302a; }
+.drive-spend { font-size:10.6pt; line-height:1.58; margin:0.04in 0 0; color:#4a453c; }
+
+/* ---------- rewrite ---------- */
+.rewrite { display:flex; gap:0.32in; margin-bottom:0.06in; }
+.rw-half { flex:1; }
+.rw-label { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.4pt;
+  letter-spacing:0.18em; text-transform:uppercase; color:#9a5b34;
+  border-bottom:1pt solid #9a5b34; padding-bottom:0.07in; margin-top:0.24in; }
+.rw-hint { font-size:9pt; font-style:italic; color:#8c8272; margin-top:0.07in; }
+
+/* ---------- signature ---------- */
+.signature { display:flex; align-items:baseline; gap:0.14in; margin-top:0.34in;
+  flex-wrap:wrap; }
+.sig-line { flex:1; border-bottom:0.7pt solid #c6bcaa; height:0.34in; min-width:2.6in; }
+.sig-line.short { width:1.3in; flex:0 0 1.3in; min-width:0; }
+.sig-label { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7pt;
+  letter-spacing:0.16em; text-transform:uppercase; color:#a2988a; }
+
+/* ---------- loop ---------- */
+.loopdiagram { display:grid; grid-template-columns:1fr 1fr; gap:0.26in; margin:0.1in 0 0.28in; }
+.loopstage { border-top:1.2pt solid #9a5b34; padding-top:0.16in; }
+.ls-num { font-size:20pt; color:#c9a882; line-height:1; }
+.ls-name { font-size:14pt; margin:0.08in 0 0.1in; letter-spacing:-0.004em; }
+.loopstage p { font-size:10pt; line-height:1.52; margin:0; color:#4a453c; }
+.lw-head { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:9pt;
+  letter-spacing:0.2em; text-transform:uppercase; color:#9a5b34;
+  border-bottom:1pt solid #e0d7c7; padding-bottom:0.09in; margin:0.28in 0 0.1in;
+  display:flex; align-items:baseline; gap:0.14in; }
+.lw-head:first-child { margin-top:0; }
+.lw-num { font-family:Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif; font-size:14pt; color:#c9a882; letter-spacing:0; }
+.lw-sub { font-size:9.6pt; line-height:1.5; color:#6d6455; font-style:italic; }
+.fixgrid { display:flex; gap:0.32in; margin-top:0.16in; }
+.fix { flex:1; }
+.fix-label { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.4pt;
+  letter-spacing:0.18em; text-transform:uppercase; color:#9a5b34; margin-bottom:0.08in; }
+.fix-hint { font-size:9.2pt; line-height:1.48; color:#7d7364; margin:0; font-style:italic; }
+
+/* ---------- field card ---------- */
+.fieldcard { border:0.7pt dashed #bdb2a0; padding:0.16in; margin:0.3in 0 0.2in; }
+.fc-inner { background:#211f1b; color:#efe8dc; padding:0.34in 0.38in; }
+.fc-eyebrow { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.2pt;
+  letter-spacing:0.28em; text-transform:uppercase; color:#c08a5e; margin-bottom:0.2in; }
+.fc-block { margin-bottom:0.2in; }
+.fc-label { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7pt;
+  letter-spacing:0.18em; text-transform:uppercase; color:#8f8474; margin-bottom:0.08in; }
+.fc-block p { font-size:10pt; line-height:1.55; margin:0; color:#d9d0c1; text-align:left; }
+.fc-q { margin:0; padding-left:0.2in; }
+.fc-q li { font-size:10.6pt; line-height:1.5; margin-bottom:0.07in; text-align:left; }
+.fc-foot { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:6.4pt;
+  letter-spacing:0.2em; text-transform:uppercase; color:#6f6555; border-top:0.5pt solid #3b382f;
+  padding-top:0.12in; }
+
+/* ---------- move box ---------- */
+.movebox { border:0.8pt solid #9a5b34; background:#f8f3ea; padding:0.2in 0.24in 0.24in;
+  margin-top:0.24in; }
+.mb-label { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.2pt;
+  letter-spacing:0.2em; text-transform:uppercase; color:#9a5b34; margin-bottom:0.13in; }
+.mb-line { border-bottom:0.7pt solid #cbbca4; height:0.34in; }
+.mb-line.short { height:0.3in; }
+.mb-row { display:flex; gap:0.3in; margin-top:0.2in; }
+.mb-row > div { flex:1; }
+
+/* ---------- tracker ---------- */
+.tracker { display:grid; grid-template-columns:repeat(6,1fr); gap:0.1in; margin:0.26in 0 0.1in; }
+.tk-cell { border:0.6pt solid #d9d0c1; height:0.62in; position:relative; background:#f7f4ee; }
+.tk-cell span { position:absolute; top:0.05in; left:0.07in; font-size:7.4pt; color:#b3a894; }
+
+/* ---------- resources ---------- */
+.resources { display:grid; grid-template-columns:1fr 1fr; gap:0.3in; margin-top:0.34in; }
+.res { border-top:1pt solid #d9d0c1; padding-top:0.14in; }
+.res-name { font-size:12pt; margin-bottom:0.07in; }
+.res p { font-size:9.4pt; line-height:1.48; color:#6d6455; margin:0 0 0.09in; }
+.res-url { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.4pt;
+  letter-spacing:0.1em; color:#9a5b34; }
+
+/* ---------- colophon ---------- */
+.colophon-page { padding:0; }
+.colophon { width:100%; height:100%; background:#211f1b; color:#b7ac9c;
+  padding:3.4in 1.6in 1.2in; text-align:center; }
+.colo-mark { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:9pt;
+  letter-spacing:0.4em; color:#c08a5e; margin-bottom:0.5in; }
+.colo-body { font-size:10pt; line-height:1.62; margin:0 0 0.18in; }
+.colo-rule { width:0.7in; height:0.8pt; background:#4b463c; margin:0.34in auto; }
+.colo-fine { font-size:8.4pt; line-height:1.55; color:#7d7263; margin:0; }
+.colo-url { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:7.4pt;
+  letter-spacing:0.24em; text-transform:uppercase; color:#c08a5e; margin-top:0.5in; }
+
+/* ---------- screen presentation ---------- */
+@media screen {
+  body { background:#3a3730; padding:0.5in 0; }
+  .page { margin:0 auto 0.42in; box-shadow:0 6px 26px rgba(0,0,0,0.42); }
+}
+@media screen and (max-width: 9in) {
+  body { padding:2vw 0; }
+  .page { transform-origin: top center; }
+}
+@media print {
+  body { background:#fbf9f5; padding:0; }
+  .page { margin:0; box-shadow:none; }
+}
+
+
+</style></head><body><div class="page cover-page">
+<div class="cover">
+  <div class="cover-frame">
+    <div class="cover-top">
+      <div class="eyebrow">A Companion to Be Rich Now</div>
+    </div>
+    <div class="cover-mid">
+      <h1 class="cover-title">The Money<br>Stories<br>Workbook</h1>
+      <div class="cover-rule"></div>
+      <p class="cover-sub">A guided excavation of the beliefs<br>that are spending your money for you</p>
+    </div>
+    <div class="cover-bottom">
+      <div class="cover-author">Michael Winslow Brown</div>
+      <div class="eyebrow dim">Unbreakable Wealth</div>
+    </div>
+  </div>
+</div>
+</div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Before You Begin</div>
+  <h2 class="h-lead">You already know most of<br>what is in here.</h2>
+</div>
+<div class="body">
+<p>You have made money. You have probably made a lot of it, and somewhere along the way
+you noticed that the making did not deliver what it promised. You read the book, so you
+already know the mechanism. Your relationship with money was installed before you had any
+say in the matter, and it has been quietly running your decisions ever since.</p>
+
+<p>What follows is the excavation. Every question in here has been asked in a room with
+high earners who paid real money to sit in it, and every one of them has produced the same
+thing: a moment where someone hears themselves say a sentence out loud and realizes they
+have been carrying it since they were seven years old.</p>
+
+<p>You cannot get that moment by reading. You get it by writing.</p>
+
+<div class="callout">
+  <div class="callout-label">The only rule</div>
+  <p class="callout-body">Tell the truth. Nobody is going to read this. The value of every page
+  in your hands is set entirely by how honest you are willing to be on it.</p>
+</div>
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">1</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">How To Use This</div>
+  <h2 class="h-lead">Six instructions,<br>and then you are on your own.</h2>
+</div>
+<div class="body two-col-ish">
+
+<div class="instr"><span class="num">01</span>
+<h4>Write by hand.</h4>
+<p>Print this and use a pen. Handwriting is slower than your defenses, which is the entire
+point. Typing lets you edit while you think, and editing while you think is how the story
+survives another decade.</p></div>
+
+<div class="instr"><span class="num">02</span>
+<h4>Set a timer for ten minutes per question.</h4>
+<p>Keep the pen moving for the full ten even when you believe you are finished at four. The
+first answer is the one you have told before. The answer that changes something usually
+arrives after the first one runs out.</p></div>
+
+<div class="instr"><span class="num">03</span>
+<h4>Do not do this all at once.</h4>
+<p>Five parts, five sittings, one per day or one per week. Your nervous system needs time
+between excavations, and sleep does more of this work than you do.</p></div>
+
+<div class="instr"><span class="num">04</span>
+<h4>Separate knowing from action.</h4>
+<p>You can admit something is true without deciding what to do about it. Most people refuse
+the truth because they assume admitting it obligates them to act by Friday. Naming it is
+the whole assignment for now.</p></div>
+
+<div class="instr"><span class="num">05</span>
+<h4>Go for the minimum effective dose.</h4>
+<p>The examination can become its own sophisticated avoidance. Do enough work to see the
+pattern, interrupt it, and then go live your life.</p></div>
+
+<div class="instr"><span class="num">06</span>
+<h4>Expect to be unimpressed with yourself.</h4>
+<p>Every story in here served you at some point. Your brain built it to keep you safe and
+it did the job. You are updating software that shipped a long time ago, so treat it the way
+you would treat any old system that got you this far.</p></div>
+
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">2</span></div></div><div class="page ">
+<div class="opener center">
+  <div class="eyebrow">Baseline</div>
+  <h2 class="h-lead big">Describe in one word<br>how you feel<br>about money.</h2>
+</div>
+<div class="body center">
+<p class="lede">Write it before you read another page. Do not qualify it, do not explain it,
+and do not choose the word you would say out loud at a dinner party.</p>
+<div class="oneword"></div>
+<div class="datestamp">Date <span class="dline"></span></div>
+<p class="footnote">You will be asked this again on the last page. Do not look back at this
+one until you get there.</p>
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">3</span></div></div><div class="page divider-page">
+<div class="divider">
+  <div class="divnum">One</div>
+  <h2 class="divtitle">What You Inherited</h2>
+  <div class="divrule"></div>
+  <p class="divsub">Awareness</p>
+  <p class="divbody">Your childhood brain was not equipped to parse what was happening around
+  it, so it did what brains do and made meaning out of the available evidence. Those
+  conclusions were never rational, which is exactly why they sit upstream of your behavior
+  today. Before you can interrupt anything, you have to find out what got installed.</p>
+</div>
+</div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise One</div>
+  <h2 class="h-lead">The Money Autobiography</h2>
+</div>
+<div class="body">
+<p>Twelve questions. Ten minutes each. Somewhere in a quiet room with the phone in another
+one, and instrumental music if the monkey mind needs something to chew on.</p>
+
+<p>Notice the language in these questions, because it was chosen carefully. The word
+<em>witness</em> appears more than once, and it is doing specific work. Parents often say one
+thing about money and do another, and what shaped you was what you saw rather than what you
+were told. Go for the lived experience underneath the family narrative.</p>
+
+<p>You may hit resistance when the questions turn toward your parents. When we are young our
+parents function as our gods, and our survival depends on staying in their good graces, so the
+instinct to protect them is old and load-bearing. You can hold both truths at once. They were
+doing the best they could with what they had, and some of what they did shaped you in ways
+that no longer serve you. Nothing in this exercise requires you to blame anyone.</p>
+
+<div class="callout tight">
+  <div class="callout-label">If you get stuck</div>
+  <p class="callout-body">Write the sentence "I don't know" over and over until something else
+  arrives. It always does, usually within about ninety seconds.</p>
+</div>
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">4</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">01</div>
+  <div class="qtext">
+    <h3>What is your earliest memory of money?</h3>
+    <p class="qsub">Go for the first one, the scene where you became aware that money existed and that it mattered. Where were you, who was there, and what did you conclude?</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">5</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">02</div>
+  <div class="qtext">
+    <h3>What did you witness in your father's relationship to money, and how does it show up in your life today?</h3>
+    <p class="qsub">What he did with it, what he said about people who had it, what his body did when the subject came up.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">6</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">03</div>
+  <div class="qtext">
+    <h3>What did you witness in your mother's relationship to money, and how does it show up in your life today?</h3>
+    <p class="qsub">Same instruction. Watch for the gap between what she said and what she did.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">7</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">04</div>
+  <div class="qtext">
+    <h3>How was money used emotionally in your home?</h3>
+    <p class="qsub">As a reward, a punishment, a weapon, an apology, a silence, a substitute for something else.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">8</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">05</div>
+  <div class="qtext">
+    <h3>How did you grow up in relation to money compared with the other kids in your town?</h3>
+    <p class="qsub">Above them, below them, or precisely in the middle and terrified of moving. What did you learn about where you belonged?</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">9</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">06</div>
+  <div class="qtext">
+    <h3>How do you treat people differently based on their economic status?</h3>
+    <p class="qsub">Answer this one honestly. Everyone does it. The interesting part is which direction you go and what you are protecting when you do.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">10</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">07</div>
+  <div class="qtext">
+    <h3>How has money shaped a major decision in your life?</h3>
+    <p class="qsub">A school, a job, a city, a marriage, a business you kept alive longer than you should have.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">11</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">08</div>
+  <div class="qtext">
+    <h3>What is the worst money decision you have ever made?</h3>
+    <p class="qsub">Include what you told yourself at the time that made it seem reasonable.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">12</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">09</div>
+  <div class="qtext">
+    <h3>What is a subconscious belief you hold about money that may not be true?</h3>
+    <p class="qsub">Write down the sentence itself, in the words your mind actually uses when it says it to you.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">13</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">10</div>
+  <div class="qtext">
+    <h3>Where do you feel shame about money?</h3>
+    <p class="qsub">About how much you have, how you got it, what you spend it on, or what you cannot bring yourself to spend it on.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">14</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">11</div>
+  <div class="qtext">
+    <h3>What would you do differently today if you fully believed you deserved what you have?</h3>
+    <p class="qsub">Be specific enough that you could act on the answer this week.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">15</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">12</div>
+  <div class="qtext">
+    <h3>If you could change one thing about your relationship to money, what would it be?</h3>
+    <p class="qsub">One thing. Not a list.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="folio"><span>The Money Autobiography</span><span class="fnum">16</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Two</div>
+  <h2 class="h-lead">Draw your relationship<br>to money.</h2>
+</div>
+<div class="body">
+<p>No words. Give yourself five minutes and let your hand decide. People who insist they
+cannot draw tend to produce the most revealing pages in the room, because the part of you that
+worries about the quality of the drawing is the same part that has been managing the narrative
+for thirty years.</p>
+</div>
+<div class="box" style="height:3.95in"></div>
+<div class="body">
+<p class="qsub">Now look at what you drew. Where are you in the picture, and where is the
+money? What is the distance between them, and who else is in the frame?</p>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">17</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Three</div>
+  <h2 class="h-lead">The Vow</h2>
+</div>
+<div class="body">
+<p>When I was in elementary school my parents fought every night, and they only ever fought
+about one thing. Watching the two people I loved most tear each other apart over money, I made
+a promise to myself that I would earn so much as an adult that I would never have to worry
+about it.</p>
+
+<p>That vow built my career, and it delivered exactly what I asked it for. The second half of
+the promise is what nearly cost me everything, because my subconscious had quietly equated being
+responsible with money to worrying about money, and I had sworn never to worry again.</p>
+
+<p>Most people carry a vow like this. It usually forms in a single moment, in the voice of a
+child, and it is almost always a promise about what will never happen again.</p>
+</div>
+
+<div class="prompt">Find the moment. What did you promise yourself, and how old were you?</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="prompt">Write the vow as a single sentence, in the words the child used.</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="prompt">Where has this vow served you, and where has it started charging rent?</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">18</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Four</div>
+  <h2 class="h-lead">The Ledger</h2>
+</div>
+<div class="body">
+<p>Two decisions, examined the same way. Your best financial decision and your worst one were
+almost certainly produced by the same programming, which is the part most people miss. The
+trait that made you money is usually the trait that later cost you, and the goal is to be at
+choice about when to deploy it.</p>
+</div>
+
+<div class="ledger">
+  <div class="ledger-col">
+    <div class="ledger-head">The best decision</div>
+    <div class="rules" style=""><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div></div>
+    <div class="ledger-sub">What in you made it possible?</div>
+    <div class="rules" style=""><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div></div>
+  </div>
+  <div class="ledger-col">
+    <div class="ledger-head">The worst decision</div>
+    <div class="rules" style=""><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div></div>
+    <div class="ledger-sub">What in you made it possible?</div>
+    <div class="rules" style=""><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div></div>
+  </div>
+</div>
+
+<div class="prompt">If the same trait appears in both columns, write it here and describe when
+it belongs on offense and when it belongs on defense.</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">19</span></div></div><div class="page divider-page">
+<div class="divider">
+  <div class="divnum">Two</div>
+  <h2 class="divtitle">The Ten Stories</h2>
+  <div class="divrule"></div>
+  <p class="divsub">Insight</p>
+  <p class="divbody">After several years of retreats and a few hundred long conversations with
+  high earners, the same stories kept walking through the door wearing different clothes. The
+  details vary enormously and the structure almost never does. At least one of these will feel
+  uncomfortably familiar, and most people are running three or four at once.</p>
+</div>
+</div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">How To Read These</div>
+  <h2 class="h-lead">Look for the behavior,<br>not the sentence.</h2>
+</div>
+<div class="body">
+<p>Almost nobody recognizes their own story by its name, because from inside a story the
+behavior it produces feels like ordinary good judgment. What you can spot is the behavior. Read
+the middle section of each card first, and if something in it describes a Tuesday you actually
+had, keep reading.</p>
+
+<p>These exist on a spectrum, and none of them is inherently a defect. Scarcity gets treated as
+the villain and abundance as the cure, which is a marketing story rather than a true one. I was
+enormously abundant right up until the point I nearly ran out of money, and a little more
+scarcity would have served me well. Neutrality is the target, because a neutral mind can
+actually read the data in front of it.</p>
+
+<p>Score each story from zero to five as you go. Zero means the description does nothing to
+you. Five means you had to put the workbook down.</p>
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">20</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 01</div>
+    <h3 class="story-name">&ldquo;Rich People Are Evil&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">Money corrupts, and anyone holding a lot of it took it from someone who needed it more.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>You empty the account almost as fast as it fills. You undercharge and call it fairness. You downplay a good year to your family, drive something deliberately unremarkable, and feel a low hum of apology whenever the subject of your success comes up in your hometown.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>A parent who railed against the wealthy at the dinner table, a religious teaching absorbed young, or a community where standing out was punished more reliably than failing.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>It keeps you generous and it keeps you honest. It also guarantees that you will spend a lifetime building things you are not permitted to keep.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">21</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 02</div>
+    <h3 class="story-name">&ldquo;I Don't Deserve What I Have&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">I did not earn this the way a person is supposed to earn it.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>You work punishing hours to justify money you already have. You hide an inheritance, a windfall, or a fast exit from almost everyone you know. You may have built something that loses money in a way that looks like bad luck and functions like penance.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>Wealth that arrived through inheritance, timing, or a business that took off faster than the hero's journey script allows. Somewhere young, you noticed a gap between your circumstances and someone else's, and your child brain assigned you the blame.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>The humility is real and people can feel it. The cost is that no amount of achievement will ever settle the account, because the debt was never financial.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">22</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 03</div>
+    <h3 class="story-name">&ldquo;Success Must Be Earned Through Suffering&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">If it came easily, it does not count.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>You refuse leverage that would obviously work. You kept the eighty-hour weeks after the exit that was supposed to end them. A fifteen-minute decision that earns more than a year of labor makes you deeply uncomfortable, so you manufacture difficulty to restore the balance.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>A parent who worked themselves into the ground and was honored for it, a military or religious upbringing, or a culture that treats exhaustion as evidence of virtue.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>The work ethic is a genuine asset and it built what you have. Left unexamined, it quietly converts your entire life into a payment plan on a debt nobody is collecting.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">23</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 04</div>
+    <h3 class="story-name">&ldquo;I Am Afraid Of My Own Success&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">This is probably about as far as someone like me should go.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>You have sat at the same revenue number for several years with an extremely well-reasoned explanation for why. You attempt things you are confident you can win. Every time you approach a threshold, obstacles appear that you had some hand in creating.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>Our species evolved in tribes where expulsion meant death, so the brain treats outshining the group as a genuine safety risk. The more distance you put between yourself and the people you came up with, the louder the alarm gets.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>Staying inside the lines has kept your relationships intact. It has also set a ceiling you did not consciously choose and cannot see from underneath.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">24</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 05</div>
+    <h3 class="story-name">&ldquo;I'm Irresponsible With Money&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">I am just bad with money, I always have been, and that is simply who I am.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>You do not open the statements. There is no plan for any given dollar. You outsource everything financial to someone else and then resent them for the control, or you make a large decision quickly to avoid the discomfort of sitting with the numbers.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>One early mistake that somebody in your family named as a character flaw rather than an event. You have been living inside the diagnosis ever since.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>The identity protects you from the disappointment of trying and failing again. It also functions as a permanent excuse, and permanent excuses are expensive.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">25</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 06</div>
+    <h3 class="story-name">&ldquo;My Self-Worth Is My Net Worth&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">I will know that I matter when the number is bigger.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>You check your net worth the way other people check the weather, and it sets your mood for the morning. You pick up every tab. You buy the object that signals the thing you want to be believed about you, and the relief lasts a few days at most.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>Love that arrived conditionally, tied to performance, achievement, or provision. You learned early that being valuable and being loved were the same transaction.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>The drive is enormous and it produces real results. The arrangement never resolves, because a number cannot answer a question about worth.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">26</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 07</div>
+    <h3 class="story-name">&ldquo;I Don't Worry About Money&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">I am smart and I will just go make more.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>Capital goes out the door almost as fast as it comes in, deployed into whatever looks interesting. You have no plan for individual dollars because planning feels like worrying, and you swore off worrying a long time ago. You keep swinging for home runs in a season that called for singles.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>Watching money stress damage the people you loved, followed by a private vow that you would never live that way. The first half of the vow built your career and the second half is what gets expensive.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>This one carried me for two decades and then nearly took everything. Being a good steward of wealth and worrying about it are entirely separate activities, and the subconscious tends to file them in the same drawer.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">27</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 08</div>
+    <h3 class="story-name">&ldquo;There Will Never Be Enough&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">One more year, one more round, and then I will finally feel safe.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>You sold the company and left the proceeds in a savings account. You still work weekends. You declined the seventy-five-cent topping on your ice cream while holding eight figures. Your stated fear is something concrete like college tuition, and the arithmetic on that fear stopped making sense years ago.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>A bankruptcy watched from a child's height, a family that lost everything at the top, or a grandparent who survived something that made frugality a moral obligation. Some of this gets handed down a generation or two before it reaches you.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>Nothing protects capital like this story does. It also produces a poverty mindset that no balance can cure, and a person who cannot enjoy what they have is poor at any net worth.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">28</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 09</div>
+    <h3 class="story-name">&ldquo;Money Is Not For Me&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">It is fine, I really do not need anything.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>You pay yourself last and least, sometimes less than everyone who works for you. Profit gets reinvested into software, headcount, or another mastermind, and none of it reaches you. You spend freely on your children, your team, and your partner, and you will not buy the shoes unless they are on sale.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>You were taught, often explicitly and often by people who meant well, that wanting things for yourself was greedy. The lesson intended was that we do not always get what we want, and the lesson absorbed was that you do not deserve to.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>It reads as generosity and humility from the outside, which is exactly what makes it so hard to see. Undervaluing yourself is not a virtue, and the pattern reinforces the belief that produced it.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">29</span></div></div><div class="page ">
+<div class="storycard">
+  <div class="story-top">
+    <div class="story-num">Story 10</div>
+    <h3 class="story-name">&ldquo;Money Is A Tool To Exert Power&rdquo;</h3>
+  </div>
+
+  <div class="story-voice">Whoever holds the money holds the leash.</div>
+
+  <div class="story-block">
+    <div class="story-label">How it shows up</div>
+    <p>You keep accounts separate as a defense rather than a preference. You scrutinize a partner's spending, or you have arranged your finances so that no one can ever have leverage over you. The full inversion is just as common, where you reject money and its trappings entirely so that it can never be used against you the way you watched it used against someone you loved.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Where it usually comes from</div>
+    <p>Watching money function as a weapon inside your own home, in the hands of the person who was supposed to be safe.</p>
+  </div>
+
+  <div class="story-block">
+    <div class="story-label">Offense and defense</div>
+    <p>The vigilance is completely rational given what you saw. It also means that the money you build stays a threat instead of becoming a tool, and threats are difficult to enjoy.</p>
+  </div>
+
+  <div class="story-foot">
+    <div class="story-score">
+      <div class="story-label">How loudly does this one ring?</div>
+      <div class="scale"><span class="dot">0</span><span class="dot">1</span><span class="dot">2</span><span class="dot">3</span><span class="dot">4</span><span class="dot">5</span></div>
+    </div>
+  </div>
+
+  <div class="story-prompt">Where did you recognize yourself, and in what specific behavior?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+</div>
+<div class="folio"><span>The Ten Stories</span><span class="fnum">30</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Sorting</div>
+  <h2 class="h-lead">Your top three,<br>and the one you will work.</h2>
+</div>
+<div class="body">
+<p>Most people carry three or four of these braided together, and the braid is why the whole
+thing has been so hard to see. Fear of success sits underneath a belief that rich people are
+evil, which explains the money that leaves as fast as it arrives, and each one lends the others
+cover.</p>
+</div>
+
+<div class="rank">
+  <div class="rank-row"><span class="rank-n">1</span><span class="rank-line"></span></div>
+  <div class="rank-row"><span class="rank-n">2</span><span class="rank-line"></span></div>
+  <div class="rank-row"><span class="rank-n">3</span><span class="rank-line"></span></div>
+</div>
+
+<div class="prompt">How do these three cooperate? Describe the way one of them makes the others
+look reasonable.</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="callout">
+  <div class="callout-label">Choose one</div>
+  <p class="callout-body">Pick the single story that is costing you the most right now. Every
+  remaining exercise in this workbook runs on that one story. You can come back for the others,
+  and you will do a better job of it once you have run the loop cleanly a single time.</p>
+</div>
+<div class="chosen">
+  <div class="chosen-label">The story I am working</div>
+  <div class="chosen-line"></div>
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">31</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Five</div>
+  <h2 class="h-lead">The Root Trace</h2>
+</div>
+<div class="body">
+<p>Take the story you chose and walk it backward through your life. Sarah traced hers from a
+salary of thirty-five thousand dollars at a multi-seven-figure company, back through rental
+tenants she quietly covered in her twenties, back to a high school job whose wages went to a
+boyfriend, and landed on a Christmas list her parents deliberately ignored every single year.
+Four stops, roughly thirty years, one belief.</p>
+</div>
+
+<div class="trace">
+  <div class="trace-row"><div class="trace-dot"></div><div class="trace-body">
+    <div class="trace-label">Now. The behavior as it appears this month.</div><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+  </div></div>
+  <div class="trace-row"><div class="trace-dot"></div><div class="trace-body">
+    <div class="trace-label">Before that. The same behavior, a decade or so ago.</div><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+  </div></div>
+  <div class="trace-row"><div class="trace-dot"></div><div class="trace-body">
+    <div class="trace-label">Before that. Early adulthood, or the first business.</div><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+  </div></div>
+  <div class="trace-row last"><div class="trace-dot"></div><div class="trace-body">
+    <div class="trace-label">The origin. The room, the age, and what you concluded.</div><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+  </div></div>
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">32</span></div></div><div class="page divider-page">
+<div class="divider">
+  <div class="divnum">Three</div>
+  <h2 class="divtitle">The Winds Beneath</h2>
+  <div class="divrule"></div>
+  <p class="divsub">The Four Drives</p>
+  <p class="divbody">Your stories sit on top of something older. Twenty-five centuries ago the
+  Buddha described four pairs of opposites that blow human beings around, and modern behavioral
+  economics arrived at nearly the same list and called them cognitive biases. Every story you
+  just scored is a narrative layer sitting on one of these.</p>
+</div>
+</div><div class="page ">
+<div class="drive">
+  <div class="drive-num">01</div>
+  <h3 class="drive-name">Pleasure and Pain</h3>
+  <div class="drive-rule"></div>
+  <p class="drive-def">Seeking comfort and avoiding discomfort is the most primal drive you have, and it predates society by a few hundred thousand years. It is the root of reactive behavior.</p>
+  <div class="story-label">How it spends</div>
+  <p class="drive-spend">It buys the upgrade at the moment of stress. It avoids the conversation with the accountant. It orders the thing that will arrive tomorrow because tomorrow is sooner than the feeling will pass.</p>
+  <div class="prompt">Where in your life are you spending money, or avoiding a decision, in order to feel better right now?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+</div>
+<div class="folio"><span>The Four Drives</span><span class="fnum">33</span></div></div><div class="page ">
+<div class="drive">
+  <div class="drive-num">02</div>
+  <h3 class="drive-name">Gain and Loss</h3>
+  <div class="drive-rule"></div>
+  <p class="drive-def">Losing something registers roughly twice as intensely as gaining the same thing, which means your nervous system is systematically miscalibrated toward protection.</p>
+  <div class="story-label">How it spends</div>
+  <p class="drive-spend">It holds a position too long because selling makes the loss real. It refuses a good opportunity because the downside is vivid and the upside is theoretical. It counts what it might lose more carefully than what it might build.</p>
+  <div class="prompt">Where is fear of losing something driving a decision that the numbers do not support?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+</div>
+<div class="folio"><span>The Four Drives</span><span class="fnum">34</span></div></div><div class="page ">
+<div class="drive">
+  <div class="drive-num">03</div>
+  <h3 class="drive-name">Praise and Blame</h3>
+  <div class="drive-rule"></div>
+  <p class="drive-def">The desire to be well regarded by the people in your immediate circle is old, deep, and almost entirely invisible while it is happening. This one is mine.</p>
+  <div class="story-label">How it spends</div>
+  <p class="drive-spend">It takes the meeting because someone impressive asked. It picks up the tab. It says yes to the investment because of how it will feel to be introduced as the investor at the restaurant.</p>
+  <div class="prompt">Where are you spending money, or time, in exchange for someone's approval?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+</div>
+<div class="folio"><span>The Four Drives</span><span class="fnum">35</span></div></div><div class="page ">
+<div class="drive">
+  <div class="drive-num">04</div>
+  <h3 class="drive-name">Fame and Disgrace</h3>
+  <div class="drive-rule"></div>
+  <p class="drive-def">The version most people miss, because the word fame calls celebrity to mind. The useful reframe is the curation of your image for people you will never meet.</p>
+  <div class="story-label">How it spends</div>
+  <p class="drive-spend">It optimizes purchases for how they will read to strangers. It treats every choice as a public relations decision. Frugality performs here just as loudly as extravagance, because the ten-year-old sedan is also sending a message.</p>
+  <div class="prompt">Where are you managing how you are perceived by people whose opinion cannot actually affect your life?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+</div>
+<div class="folio"><span>The Four Drives</span><span class="fnum">36</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Six</div>
+  <h2 class="h-lead">Name your core driver.</h2>
+</div>
+<div class="body">
+<p>One of the four shows up more than the others. Mine is praise and blame, which makes
+complete sense given how thoroughly I was conditioned to seek approval as a child, and once I
+started seeing it I could not stop. I catch it taking out the trash, quietly hoping my wife
+notices, like a golden retriever who has returned the ball.</p>
+
+<p>How you categorize any given pattern matters far less than whether you catch yourself
+operating on default. The moment you name what is happening, the pattern loses some of its
+charge.</p>
+</div>
+
+<div class="chosen">
+  <div class="chosen-label">My core driver</div>
+  <div class="chosen-line"></div>
+</div>
+
+<div class="prompt">Connect it to the story you chose. What deeper drive does that story
+activate, and what does the story get to protect you from feeling?</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="prompt">Where did you notice this drive operating in the last seven days?</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">37</span></div></div><div class="page divider-page">
+<div class="divider">
+  <div class="divnum">Four</div>
+  <h2 class="divtitle">What You Are<br>Pretending Not To Know</h2>
+  <div class="divrule"></div>
+  <p class="divsub">Radical Truth Telling</p>
+  <p class="divbody">Stories and patterns explain how you got here and why you behave the way
+  you do. They cannot account for what you are actively refusing to look at, because the lie
+  sits upstream of the pattern. If you are deceiving yourself, no amount of insight into your
+  programming will surface anything true.</p>
+</div>
+</div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">The Question</div>
+  <h2 class="h-lead big">What am I<br>pretending<br>not to know?</h2>
+</div>
+<div class="body">
+<p class="lede">This question bypasses the defenses you have spent a lifetime building. Most
+people can answer it in under ten seconds and then spend twenty minutes explaining why the
+answer does not count.</p>
+<p>We say we want clarity, and most of us do not, because clarity forces a choice. Pretending
+not to know is how you stay safe from the perceived pain of change while telling yourself you
+are simply confused about what to do.</p>
+<p>Sit with it for ten full minutes. Write whatever arrives, including the answers you intend
+to cross out.</p>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">38</span></div></div><div class="page ">
+<div class="qhead">
+  <div class="qnum">&mdash;</div>
+  <div class="qtext">
+    <h3>Keep going.</h3>
+    <p class="qsub">The first answer is usually the socially acceptable version of the real one.
+    Ask the question again and write the answer you would not say out loud.</p>
+  </div>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>Radical Truth Telling</span><span class="fnum">39</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Seven</div>
+  <h2 class="h-lead">The Rewrite</h2>
+</div>
+<div class="body">
+<p>Internal dissonance is the tension of being divided against yourself, and it shows up as
+anxiety, procrastination, perfectionism, and a background hum of stress that never quite
+resolves. It hides inside sentences that contain just enough truth to pass inspection.</p>
+
+<p>Consider a statement most people would accept without a second look: <em>I can't quit this
+job I hate because I need the money.</em> The second half is true and the first half gives away
+your agency, which makes the whole thing a comfortable lie. Quitting requires reducing expenses
+or tolerating uncertainty, and what you are actually saying is that you are unwilling to do
+either. Both of those may be entirely reasonable positions.</p>
+
+<p>Written honestly it becomes: <em>I hate my job, and I am choosing to stay because I do not
+want to give up my lifestyle or sit in the uncertainty of finding another one.</em> Nothing
+about your circumstances changed. You simply took back the agency, and now staying is a choice
+rather than a sentence.</p>
+</div>
+
+<div class="rewrite">
+  <div class="rw-half">
+    <div class="rw-label">The comfortable version</div>
+    <div class="rw-hint">Start with "I can't" or "I have to"</div>
+  </div>
+  <div class="rw-half">
+    <div class="rw-label">The honest version</div>
+    <div class="rw-hint">Start with "I am choosing"</div>
+  </div>
+</div>
+
+<div class="rewrite">
+  <div class="rw-half"><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div></div>
+  <div class="rw-half"><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div></div>
+</div>
+<div class="rewrite">
+  <div class="rw-half"><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div></div>
+  <div class="rw-half"><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div></div>
+</div>
+<div class="rewrite">
+  <div class="rw-half"><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div></div>
+  <div class="rw-half"><div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div></div>
+</div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">40</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Eight</div>
+  <h2 class="h-lead">Where you perform</h2>
+</div>
+<div class="body">
+<p>External dissonance is the friction between your inner life and the one you are actually
+living in front of other people. You betray something you know to be true in order to
+manufacture harmony, acceptance, or belonging, and you do it so smoothly that it barely
+registers as a decision.</p>
+
+<p>Two truths make this one easier to dismantle. Nobody thinks about you nearly as much as you
+do, because they are fully occupied worrying that everyone can see them failing. And nobody can
+read your mind, which means every secret test you administer is a test you designed to be
+failed.</p>
+</div>
+
+<div class="prompt">Where are you living one life on the inside and another on the outside?</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="prompt">What secret tests are you running on the people closest to you? Write the
+unspoken rule, in the form of "If they really loved me, they would ___."</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="prompt">What is the thing you actually want that you have never asked for
+directly?</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">41</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Nine</div>
+  <h2 class="h-lead">The integrated truth</h2>
+</div>
+<div class="body">
+<p>Most of us are fighting both wars simultaneously, lying to ourselves and performing for
+others at the same time, which is why a single clean sentence rarely covers it. The realistic
+version of that job example sounds more like this: <em>I hate my job, and I am afraid people
+will think I failed, and some part of me believes my spouse only loves me because I provide,
+and my parents will not be proud of me if I stop.</em></p>
+
+<p>Write yours. Take everything you surfaced in the last three exercises and put it into one
+paragraph, including the parts that make you wince. Then sign it, because signing it does
+something that writing it does not.</p>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="signature">
+  <div class="sig-line"></div>
+  <div class="sig-label">Signed</div>
+  <div class="sig-line short"></div>
+  <div class="sig-label">Date</div>
+</div>
+<p class="footnote center">Admitting this obligates you to nothing. The action is a separate
+function, and sometimes the right action is to sit with the truth before touching anything.</p>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">42</span></div></div><div class="page divider-page">
+<div class="divider">
+  <div class="divnum">Five</div>
+  <h2 class="divtitle">Running The Loop</h2>
+  <div class="divrule"></div>
+  <p class="divsub">Action and Integration</p>
+  <p class="divbody">Everything to this point has been excavation, and excavation on its own is
+  self-indulgence. Insight that does not become action is a hobby. What follows is the process
+  I adapted from the OODA loop I learned in the cockpit and have now run on myself and a few
+  hundred clients for the better part of a decade.</p>
+</div>
+</div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">The Model</div>
+  <h2 class="h-lead">The Alignment Loop</h2>
+</div>
+<div class="loopdiagram">
+  <div class="loopstage"><div class="ls-num">1</div><div class="ls-name">Awareness</div>
+    <p>Witness the thought, the feeling, or the behavior without doing anything about it. Notice
+    that your reaction is larger than the situation calls for.</p></div>
+  <div class="loopstage"><div class="ls-num">2</div><div class="ls-name">Insight</div>
+    <p>Ask where in your past this pattern comes from. It is easy to get stuck here, because
+    mining your history feels like progress while producing none.</p></div>
+  <div class="loopstage"><div class="ls-num">3</div><div class="ls-name">Action</div>
+    <p>Interrupt the pattern with a mechanical fix, an emotional fix, or ideally both. This
+    stage is the one that matters most and the one most people skip.</p></div>
+  <div class="loopstage"><div class="ls-num">4</div><div class="ls-name">Integration</div>
+    <p>Repeat the new action until your body believes it. Then keep watching, because the
+    pattern will return in a subtler costume.</p></div>
+</div>
+<div class="body">
+<p class="footnote">The model is a loop rather than a line for a reason. You will never
+eliminate these patterns entirely, and the goal was never elimination. You are working toward
+being at choice about when to run them, which is a very different and much more achievable
+target.</p>
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">43</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Ten</div>
+  <h2 class="h-lead">Run the loop on your story.</h2>
+</div>
+
+<div class="loopwork">
+  <div class="lw-head"><span class="lw-num">1</span> Awareness</div>
+  <div class="lw-sub">Describe the behavior exactly as it appeared the last time it ran. What did
+  your body do, and what did you tell yourself while it was happening?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div></div>
+
+  <div class="lw-head"><span class="lw-num">2</span> Insight</div>
+  <div class="lw-sub">Where in your past does this pattern stem from, and what was it protecting
+  you from at the time?</div>
+  <div class="rules" style=""><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div></div>
+</div>
+<div class="folio"><span>The Alignment Loop</span><span class="fnum">44</span></div></div><div class="page ">
+<div class="loopwork">
+  <div class="lw-head"><span class="lw-num">3</span> Action</div>
+  <div class="lw-sub">Every problem has two kinds of solution, and the strongest work runs both
+  at once.</div>
+
+  <div class="fixgrid">
+    <div class="fix">
+      <div class="fix-label">The mechanical fix</div>
+      <p class="fix-hint">A system that makes the old pattern harder to run. An automatic
+      transfer, a standing salary, a rule about how long you sit with a deal before deciding, a
+      number you are not permitted to exceed without a conversation.</p>
+      <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+    </div>
+    <div class="fix">
+      <div class="fix-label">The emotional fix</div>
+      <p class="fix-hint">Something that addresses the root rather than the symptom. The
+      interrupt on the following page is the one I use, and it works in real time while the
+      pattern is firing.</p>
+      <div class="rules" style=""><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div><div class="rule" style="height:0.34in"></div></div>
+    </div>
+  </div>
+
+  <div class="lw-head"><span class="lw-num">4</span> Integration</div>
+  <div class="lw-sub">What will make this the default rather than the exception? Name the
+  repetition, the cadence, and the person who will notice if you stop.</div>
+  <div class="rules" style=""><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div><div class="rule" style="height:0.36in"></div></div>
+</div>
+<div class="folio"><span>The Alignment Loop</span><span class="fnum">45</span></div></div><div class="page ">
+<div class="opener center">
+  <div class="eyebrow">Field Card</div>
+  <h2 class="h-lead">The Interrupt</h2>
+</div>
+<div class="body center">
+<p class="lede">Three breaths and three questions, run in the moment the pattern fires. Cut
+this out and put it in your wallet.</p>
+</div>
+
+<div class="fieldcard">
+  <div class="fc-inner">
+    <div class="fc-eyebrow">The Interrupt</div>
+    <div class="fc-block">
+      <div class="fc-label">Breathe, three times</div>
+      <p>Exhale everything, drawing navel to spine. Breathe into the belly, take a second sip of
+      air into the chest, and pause. Exhale from the belly first and rest for a few heartbeats at
+      the bottom.</p>
+    </div>
+    <div class="fc-block">
+      <div class="fc-label">Ask, one question per breath</div>
+      <ol class="fc-q">
+        <li>Is this real? Am I actually in danger right now?</li>
+        <li>How old is this? Where in my past does it come from?</li>
+        <li>What do I need in order to feel safe in this moment?</li>
+      </ol>
+    </div>
+    <div class="fc-foot">Be Rich Now &middot; The Alignment Loop</div>
+  </div>
+</div>
+
+<p class="footnote center">The breathing pattern downregulates the nervous system and is used by
+people whose lives depend on staying calm. The questions do the rest.</p>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">46</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Eleven</div>
+  <h2 class="h-lead">One aligned move.</h2>
+</div>
+<div class="body">
+<p>Sarah made hers in a single afternoon. She saw the pattern, walked out of the room, called
+her accounting firm, and changed her salary from thirty-five thousand a year to thirty-five
+thousand a month. The belief took considerably longer to catch up, and the belief was never
+going to move first.</p>
+
+<p>Choose something specific and real that you can do inside the next seven days. Small counts.
+The size of the action matters far less than the fact that you took one, because you are
+proving to your nervous system that the old rule can be broken without consequence.</p>
+</div>
+
+<div class="movebox">
+  <div class="mb-label">The move</div>
+  <div class="mb-line"></div>
+  <div class="mb-line"></div>
+  <div class="mb-row">
+    <div><div class="mb-label">By when</div><div class="mb-line short"></div></div>
+    <div><div class="mb-label">Who will know</div><div class="mb-line short"></div></div>
+  </div>
+</div>
+
+<div class="prompt">What is the fear that shows up when you read your own answer back?</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div>
+<div class="prompt">What actually happens if the fear turns out to be right?</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">47</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Integration</div>
+  <h2 class="h-lead">Thirty days.</h2>
+</div>
+<div class="body">
+<p>Integration is repetition until your body believes what your mind has already accepted. Mark
+a day when you either ran the interrupt or took the aligned action. Missing days is expected and
+does not reset anything, because the loop has no losing condition.</p>
+</div>
+
+<div class="tracker"><div class="tk-cell"><span>1</span></div><div class="tk-cell"><span>2</span></div><div class="tk-cell"><span>3</span></div><div class="tk-cell"><span>4</span></div><div class="tk-cell"><span>5</span></div><div class="tk-cell"><span>6</span></div><div class="tk-cell"><span>7</span></div><div class="tk-cell"><span>8</span></div><div class="tk-cell"><span>9</span></div><div class="tk-cell"><span>10</span></div><div class="tk-cell"><span>11</span></div><div class="tk-cell"><span>12</span></div><div class="tk-cell"><span>13</span></div><div class="tk-cell"><span>14</span></div><div class="tk-cell"><span>15</span></div><div class="tk-cell"><span>16</span></div><div class="tk-cell"><span>17</span></div><div class="tk-cell"><span>18</span></div><div class="tk-cell"><span>19</span></div><div class="tk-cell"><span>20</span></div><div class="tk-cell"><span>21</span></div><div class="tk-cell"><span>22</span></div><div class="tk-cell"><span>23</span></div><div class="tk-cell"><span>24</span></div><div class="tk-cell"><span>25</span></div><div class="tk-cell"><span>26</span></div><div class="tk-cell"><span>27</span></div><div class="tk-cell"><span>28</span></div><div class="tk-cell"><span>29</span></div><div class="tk-cell"><span>30</span></div></div>
+
+<div class="prompt">At day thirty, describe what changed. Watch for the ripple into places that
+have nothing to do with money.</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">48</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">Exercise Twelve</div>
+  <h2 class="h-lead">Thank it for its service.</h2>
+</div>
+<div class="body">
+<p>Your brain built this story to keep you safe, and by any reasonable measure it succeeded,
+because you are here. Treat it the way Marie Kondo treats a sweater that no longer fits. You
+acknowledge what it did, you accept that you were doing your best with the information
+available at the time, and then you let it go without contempt.</p>
+
+<p>Write a letter to the story you chose. Tell it what it protected you from, where it earned
+its keep, and what you are ready to do without it. Then tell it where you would still like to
+be able to call on it, because you are not trying to delete anything.</p>
+</div>
+<div class="rules" style=""><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div><div class="rule" style="height:0.40in"></div></div><div class="folio"><span>The Money Stories Workbook</span><span class="fnum">49</span></div></div><div class="page ">
+<div class="opener center">
+  <div class="eyebrow">Baseline, Again</div>
+  <h2 class="h-lead big">Describe in one word<br>how you feel<br>about money.</h2>
+</div>
+<div class="body center">
+<p class="lede">Write it before you turn back to the first one.</p>
+<div class="oneword"></div>
+<div class="datestamp">Date <span class="dline"></span></div>
+<p class="footnote">Now compare them. If the word has not changed, the work is still in
+progress, which is the ordinary condition of everyone doing this honestly. If it has, notice
+that nothing in your circumstances had to move first.</p>
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">50</span></div></div><div class="page ">
+<div class="opener">
+  <div class="eyebrow">What Happens Now</div>
+  <h2 class="h-lead">The loop is an infinite game.</h2>
+</div>
+<div class="body">
+<p>You have run this once, on one story, and the process does not change when you scale it. The
+same four stages that worked on the way you handle money will work on the way you handle your
+health, your calendar, your marriage, and your reaction to being stuck in traffic. Money was
+only ever the access point, chosen because it is the domain where the evidence is easiest to
+audit.</p>
+
+<p>Finite games have fixed rules and produce winners. Infinite games never end and only become
+more refined. Your life will keep handing you the exact assignments you need, arriving as a
+failed deal, a hard conversation, or an unreasonable flash of anger in an ordinary moment. None
+of that is a sign that you have failed at this. It is the process working.</p>
+
+<p>The most freeing thing you can do for yourself is let go of the finish line.</p>
+</div>
+
+<div class="resources">
+  <div class="res">
+    <div class="res-name">The Freedom Audit</div>
+    <p>A full self-assessment across every dimension of wealth, measuring the gap between the
+    life you are living and the one you say you want.</p>
+    <div class="res-url">freedomaudit.berichnow.com</div>
+  </div>
+  <div class="res">
+    <div class="res-name">The Companion Workbooks</div>
+    <p>The rest of the exercises behind the book, from defining your dimensions through building
+    the life they point to.</p>
+    <div class="res-url">berichnow.com/resources</div>
+  </div>
+  <div class="res">
+    <div class="res-name">The Retreats</div>
+    <p>Small rooms, three days, and the place nearly every story in the book came from. I run a
+    few of these a year.</p>
+    <div class="res-url">berichnow.com/retreats</div>
+  </div>
+  <div class="res">
+    <div class="res-name">Unbreakable Wealth</div>
+    <p>A mastermind for founders and operators who have already won the game they were playing.</p>
+    <div class="res-url">berichnow.com/mastermind</div>
+  </div>
+</div>
+<div class="folio"><span>The Money Stories Workbook</span><span class="fnum">51</span></div></div><div class="page colophon-page">
+<div class="colophon">
+  <div class="colo-mark">BRN</div>
+  <p class="colo-body">The Money Stories Workbook is the companion to <em>Be Rich Now: How to
+  Want Everything You Have</em> by Michael Winslow Brown.</p>
+  <p class="colo-body">The client stories referenced throughout have had identifying details
+  changed. The Alignment Loop is a synthesis rather than a discovery, and its shape comes from
+  Colonel John Boyd's OODA loop. The four drives are a plain-language rendering of the Eight
+  Worldly Dharmas.</p>
+  <div class="colo-rule"></div>
+  <p class="colo-fine">&copy; Michael Winslow Brown. For personal use. Please do not
+  redistribute, and please do send it to someone who needs it.</p>
+  <div class="colo-url">berichnow.com</div>
+</div>
+</div></body></html>

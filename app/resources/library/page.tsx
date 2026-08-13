@@ -54,8 +54,11 @@ export default async function ResourceLibrary() {
                 <p style={{ fontSize: '18px', color: 'var(--text-body)', marginBottom: '12px' }}>
                   Surface the inherited scripts running your financial decisions, then name the fear sitting underneath each one.
                 </p>
-                <a href="/resources/Money-Stories-Workbook.pdf" download style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--copper)', textDecoration: 'none' }}>
-                  Download →
+                <a href="/resources/money-stories.html" target="_blank" style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--copper)', textDecoration: 'none' }}>
+                  Open Workbook →
+                </a>
+                <a href="/resources/Money-Stories-Workbook.pdf" download style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--text-subtle)', textDecoration: 'none', marginLeft: '16px' }}>
+                  Download PDF
                 </a>
               </li>
               <li style={{ marginBottom: '24px' }}>
