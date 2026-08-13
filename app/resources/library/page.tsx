@@ -125,12 +125,14 @@ export default async function ResourceLibrary() {
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '26pt', lineHeight: '1.3', fontWeight: 'normal', color: 'var(--text-heading)', marginBottom: '18px' }}>
               Your own story is the hardest one to see.
             </h3>
-            <p style={{ fontSize: '11pt', lineHeight: '1.6', color: 'var(--text-body)', marginBottom: '18px' }}>
+            <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'var(--text-body)', marginBottom: '32px' }}>
               It has had a lifetime to disguise itself as ordinary good judgment, which is why you can spot the same pattern in a friend inside of four minutes and miss it in yourself for thirty years. A room of people doing this work will name what you cannot, and you will do the same for them. Learn more about the community and take the next step on your journey.
             </p>
-            <a href="https://unbreakablewealth.com/about-us/" target="_blank" rel="noopener" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bg)', background: '#9a5b34', padding: '14px 28px', textDecoration: 'none', transition: 'all 0.3s ease', border: '1px solid #9a5b34' }}>
-              About Unbreakable Wealth
-            </a>
+            <div style={{ textAlign: 'center' }}>
+              <a href="https://unbreakablewealth.com/about-us/" target="_blank" rel="noopener" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bg)', background: '#9a5b34', padding: '14px 28px', textDecoration: 'none', transition: 'all 0.3s ease', border: '1px solid #9a5b34' }}>
+                About Unbreakable Wealth
+              </a>
+            </div>
           </div>
         </div>
       </main>
