@@ -16,8 +16,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'API key not configured' }, { status: 500 });
     }
 
-    // Add subscriber with custom field for automation
-    const kitResponse = await fetch('https://api.kit.com/v4/subscribers', {
+    // Submit through "Book Resources" form (ID: 9796177)
+    // This triggers all form actions (tags, sequences, etc.) configured in Kit
+    const formResponse = await fetch('https://api.kit.com/v4/forms/9796177/subscribe', {
       method: 'POST',
       headers: {
         'X-Kit-Api-Key': KIT_API_KEY,
@@ -31,39 +32,19 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    if (!kitResponse.ok) {
-      const errorData = await kitResponse.json();
-      console.error('[Resources] Kit API error:', errorData);
+    if (!formResponse.ok) {
+      const errorData = await formResponse.json();
+      console.error('[Resources] Kit form submit error:', errorData);
       return NextResponse.json(
         { error: 'Failed to subscribe. Please try again.' },
         { status: 500 }
       );
     }
 
-    const kitData = await kitResponse.json();
-    console.log('[Resources] Successfully added subscriber:', email, 'with source: book-resources');
+    const formData = await formResponse.json();
+    console.log('[Resources] Successfully submitted to Book Resources form:', email);
 
-    // Add "Book Resources" tag (ID: 22420144) to trigger sequence automation
-    const tagResponse = await fetch('https://api.kit.com/v4/tags/22420144/subscribers', {
-      method: 'POST',
-      headers: {
-        'X-Kit-Api-Key': KIT_API_KEY,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email_address: email,
-      }),
-    });
-
-    if (tagResponse.ok) {
-      console.log('[Resources] Successfully added "Book Resources" tag to:', email);
-    } else {
-      // Log but don't fail the request if tagging fails
-      const tagError = await tagResponse.json();
-      console.error('[Resources] Failed to add tag:', tagError);
-    }
-
-    return NextResponse.json({ success: true, subscriber: kitData });
+    return NextResponse.json({ success: true, subscriber: formData });
   } catch (error) {
     console.error('[Resources] Subscribe error:', error);
     return NextResponse.json(
