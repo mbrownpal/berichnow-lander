@@ -13,34 +13,6 @@ const supabase = createClient(
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const EMAIL_1_TEMPLATE = {
-  subject: 'why I wrote this',
-  body: `Hey,
-
-I'm glad you're here. Your copy of chapter one is waiting for you here: 
-
-Open in Browser: https://berichnow.com/resources/chapter-one.html
-Download PDF: https://berichnow.com/resources/chapter-one.pdf
-
-WHY I WROTE THIS
-
-This book is the culmination of nearly three years of writing, and almost a decade of deep personal work before that. I burned it down and started again three different times, which is two more than I would recommend to anyone in their right mind.
-
-But the result is the book I wish I had fifteen years ago, when I was just starting my entrepreneurial journey. It's the culmination of everything I learned from making and subsequently losing a fortune, only to make it back again. Beyond that, it contains the stories I've witnessed from thousands of hours of coaching other founders to find their own inner wealth.
-
-I wrote this book because I want to share the lessons I learned the hard way so you don't have to. But mostly I wrote it because I want to share with everyone the truth I discovered along the way:
-
-True wealth is available to you, right now, exactly as you are.
-
-There's a way to help get that message into the hands that need it, and in a few days I'll tell you exactly how. A book like this reaches the right people because someone hands it to them and says, "This made me think of you." That is the part I can't do, and it's yours.
-
-I hope it resonates with you. And if it does, I hope you hand it to someone you care about.
-
-With gratitude,
-
-mb`
-};
-
 export async function POST(req: NextRequest) {
   try {
     const { email } = await req.json();
@@ -81,7 +53,23 @@ export async function POST(req: NextRequest) {
     const kitData = await kitResponse.json();
     console.log('[Homepage] Kit subscriber created:', email);
 
-    // 2. Track in Supabase for email sequence
+    // 2. Fire Resend Automation event (triggers 3-email sequence)
+    try {
+      await resend.events.send({
+        event: 'free_chapter_signup',
+        email: email,
+        payload: {
+          source: 'homepage-chapter-one',
+          subscribed_at: new Date().toISOString(),
+        },
+      });
+      console.log('[Homepage] Resend automation triggered:', email);
+    } catch (resendError) {
+      console.error('[Homepage] Resend event error:', resendError);
+      // Don't fail the request - subscriber was created
+    }
+
+    // 3. Optional: Track in Supabase for analytics
     const now = new Date();
     const { error: supabaseError } = await supabase
       .from('free_chapter_subscribers')
@@ -89,32 +77,13 @@ export async function POST(req: NextRequest) {
         email,
         source: 'homepage-chapter-one',
         subscribed_at: now.toISOString(),
-        email_1_sent_at: now.toISOString(),
-        current_email: 1,
       }, {
         onConflict: 'email'
       });
 
     if (supabaseError) {
       console.error('[Homepage] Supabase error:', supabaseError);
-      // Don't fail the request - Kit subscriber was created successfully
-    } else {
-      console.log('[Homepage] Supabase tracking added:', email);
-    }
-
-    // 3. Send Email 1 immediately via Resend
-    try {
-      await resend.emails.send({
-        from: 'Mike Brown <mike@unbreakablewealth.com>',
-        replyTo: 'mike@mbrown.co',
-        to: email,
-        subject: EMAIL_1_TEMPLATE.subject,
-        text: EMAIL_1_TEMPLATE.body,
-      });
-      console.log('[Homepage] Email 1 sent:', email);
-    } catch (emailError) {
-      console.error('[Homepage] Email send error:', emailError);
-      // Don't fail the request - subscriber was created
+      // Non-critical - continue
     }
 
     return NextResponse.json({ success: true, subscriber: kitData });
