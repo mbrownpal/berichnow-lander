@@ -54,9 +54,9 @@ export async function POST(req: NextRequest) {
     const subscriberId = kitData.subscriber?.id;
     console.log('[Homepage] Kit subscriber created:', email, 'ID:', subscriberId);
 
-    // 1b. Tag the subscriber with 'free-chapter' tag
+    // 1b. Tag the subscriber with 'free chapter' tag
     // First, get or create the tag
-    const tagName = 'free-chapter';
+    const tagName = 'free chapter';
     try {
       // Get all tags to find the 'free-chapter' tag ID
       const tagsResponse = await fetch('https://api.kit.com/v4/tags', {
