@@ -54,21 +54,19 @@ export async function POST(req: NextRequest) {
     const subscriberId = kitData.subscriber?.id;
     console.log('[Homepage] Kit subscriber created:', email, 'ID:', subscriberId);
 
-    // 1b. Tag the subscriber with 'free chapter' tag
+    // 1b. Tag the subscriber with 'Free Chapter' tag (ID: 22420114)
     if (subscriberId) {
       try {
-        await fetch('https://api.kit.com/v4/tag_subscribers', {
+        const tagId = 22420114; // 'Free Chapter' tag
+        await fetch(`https://api.kit.com/v4/tags/${tagId}/subscribers/${subscriberId}`, {
           method: 'POST',
           headers: {
             'X-Kit-Api-Key': KIT_API_KEY,
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            tag_names: ['free chapter'],
-            subscriber_ids: [subscriberId],
-          }),
+          body: JSON.stringify({}),
         });
-        console.log('[Homepage] Kit subscriber tagged with: free chapter');
+        console.log('[Homepage] Kit subscriber tagged with: Free Chapter');
       } catch (tagError) {
         console.error('[Homepage] Kit tagging error:', tagError);
         // Non-critical - continue
