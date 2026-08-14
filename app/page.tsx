@@ -26,6 +26,9 @@ export default function Home() {
 
       setSuccess(true);
       setEmail('');
+      
+      // Redirect to free chapter
+      window.location.href = '/resources/chapter-one.html';
     } catch (err) {
       setError('Something went wrong. Please try again.');
     } finally {
