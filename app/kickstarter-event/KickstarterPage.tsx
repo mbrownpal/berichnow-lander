@@ -326,14 +326,14 @@ export default function KickstarterPage({ kickstarterUrl }: KickstarterPageProps
 
         <p className="lede fade d2">For anyone who has stood on the mountain of success and wondered whether this is really it.</p>
 
-        {/* TODO: Update these stats as campaign progresses */}
+        {/* Stats from live Kickstarter campaign */}
         <div className="stats fade d3">
           <div className="stat">
             <div className="stat-num">171%</div>
             <div className="stat-label">Funded</div>
           </div>
           <div className="stat">
-            <div className="stat-num">54</div>
+            <div className="stat-num">50</div>
             <div className="stat-label">Backers</div>
           </div>
           <div className="stat">
@@ -357,7 +357,6 @@ export default function KickstarterPage({ kickstarterUrl }: KickstarterPageProps
       </header>
 
       <div className="book fade d4">
-        {/* TODO: Add book cover image to public/assets/ */}
         <img src="/assets/be-rich-now-cover.jpg" alt="Be Rich Now by Michael Winslow Brown" />
       </div>
 
