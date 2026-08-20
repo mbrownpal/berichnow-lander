@@ -2,14 +2,14 @@
 
 ## How It Works
 
-**Email arrives:** 10:08 AM Eastern daily from Kickstarter  
-**Cron runs:** 10:15 AM Eastern (7 minutes later)  
+**Email arrives:** ~10:00 AM Eastern daily from Kickstarter (variable time)  
+**Cron runs:** 12:00 PM Mountain time (gives 2+ hour buffer)  
 **Method:** Parse stats from Gmail instead of web scraping
 
 ## Cron Job Details
 
-**Schedule:** Every day at 10:15 AM Eastern  
-**Job ID:** `a686369c-2c3e-4a4a-9600-3f0c0a6a880e`  
+**Schedule:** Every day at 12:00 PM Mountain time  
+**Job ID:** `0dc6fa09-64cb-4a68-9d53-a279ffb2416a`  
 **Job Name:** `kickstarter-gmail-stats`
 
 ## What It Does
@@ -41,8 +41,8 @@ funded        backers       days left
 
 ## Next Run
 
-**First run:** Tomorrow at 10:15 AM EDT  
-**Then:** Every morning at 10:15 AM EDT
+**First run:** Tomorrow (Friday, August 21) at 12:00 PM MDT  
+**Then:** Every day at 12:00 PM Mountain time
 
 ## Managing the Job
 
@@ -54,16 +54,16 @@ openclaw cron list
 openclaw cron list | grep kickstarter
 
 # Disable (pause updates)
-openclaw cron disable a686369c-2c3e-4a4a-9600-3f0c0a6a880e
+openclaw cron disable 0dc6fa09-64cb-4a68-9d53-a279ffb2416a
 
 # Re-enable
-openclaw cron enable a686369c-2c3e-4a4a-9600-3f0c0a6a880e
+openclaw cron enable 0dc6fa09-64cb-4a68-9d53-a279ffb2416a
 
 # Remove completely
-openclaw cron remove a686369c-2c3e-4a4a-9600-3f0c0a6a880e
+openclaw cron remove 0dc6fa09-64cb-4a68-9d53-a279ffb2416a
 
 # Trigger manually (test it works)
-openclaw cron run a686369c-2c3e-4a4a-9600-3f0c0a6a880e
+openclaw cron run 0dc6fa09-64cb-4a68-9d53-a279ffb2416a
 ```
 
 ## What Gets Updated
