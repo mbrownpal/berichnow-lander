@@ -326,18 +326,18 @@ export default function KickstarterPage({ kickstarterUrl }: KickstarterPageProps
 
         <p className="lede fade d2">For anyone who has stood on the mountain of success and wondered whether this is really it.</p>
 
-        {/* Stats from live Kickstarter campaign */}
+        {/* Stats from live Kickstarter campaign - Updated 2026-08-20 */}
         <div className="stats fade d3">
           <div className="stat">
             <div className="stat-num">171%</div>
             <div className="stat-label">Funded</div>
           </div>
           <div className="stat">
-            <div className="stat-num">50</div>
+            <div className="stat-num">62</div>
             <div className="stat-label">Backers</div>
           </div>
           <div className="stat">
-            <div className="stat-num">29</div>
+            <div className="stat-num">28</div>
             <div className="stat-label">Days left</div>
           </div>
         </div>
