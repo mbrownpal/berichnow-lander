@@ -1,6 +1,114 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 export const maxDuration = 30; // seconds
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+function generateResourcesEmail(): string {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Your Be Rich Now Resources</title>
+    </head>
+    <body style="font-family: Georgia, 'Times New Roman', serif; color: #E8E0D4; background: #1a1815; line-height: 1.7; margin: 0; padding: 0;">
+      <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
+        
+        <!-- Header -->
+        <div style="text-align: center; padding: 40px 0 60px; border-bottom: 2px solid #B87333; margin-bottom: 48px;">
+          <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 3px; color: #B87333; margin-bottom: 20px; text-transform: uppercase;">Be Rich Now</div>
+          <h1 style="font-size: 36px; font-weight: 400; margin: 0; color: #E8E0D4;">Resources</h1>
+        </div>
+        
+        <!-- Intro -->
+        <p style="font-size: 18px; line-height: 1.8; color: #C4BDB2; margin-bottom: 40px; text-align: center;">
+          Reading the book will change how you think about wealth.<br/>Doing the work will change how you live.
+        </p>
+        
+        <!-- Resources -->
+        <div style="margin-bottom: 60px;">
+          
+          <!-- Resource 1 -->
+          <div style="margin-bottom: 48px;">
+            <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">01. The Unbreakable Year</div>
+            <p style="font-size: 16px; line-height: 1.7; color: #C4BDB2; margin-bottom: 14px;">
+              Map the life you actually want and price it out month by month until you arrive at your Ideal Spend.
+            </p>
+            <div>
+              <a href="https://berichnow.com/resources/unbreakable-year.html" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+                OPEN WORKBOOK →
+              </a>
+              <span style="color: #655d52; margin: 0 8px;">|</span>
+              <a href="https://berichnow.com/resources/Unbreakable-Year-Workbook.pdf" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+                DOWNLOAD PDF
+              </a>
+            </div>
+          </div>
+          
+          <!-- Resource 2 -->
+          <div style="margin-bottom: 48px;">
+            <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">02. Money Stories Workbook</div>
+            <p style="font-size: 16px; line-height: 1.7; color: #C4BDB2; margin-bottom: 14px;">
+              Surface the inherited scripts running your financial decisions, then name the fear sitting underneath each one.
+            </p>
+            <div>
+              <a href="https://berichnow.com/resources/money-stories.html" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+                OPEN WORKBOOK →
+              </a>
+              <span style="color: #655d52; margin: 0 8px;">|</span>
+              <a href="https://berichnow.com/resources/Money-Stories-Workbook.pdf" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+                DOWNLOAD PDF
+              </a>
+            </div>
+          </div>
+          
+          <!-- Resource 3 -->
+          <div style="margin-bottom: 48px;">
+            <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">03. Escape Velocity Wealth Snapshot</div>
+            <p style="font-size: 16px; line-height: 1.7; color: #C4BDB2; margin-bottom: 14px;">
+              Calculate the number that makes work optional, along with the timeline to reach it down to the month.
+            </p>
+            <div>
+              <a href="https://berichnow.com/resources/calculator" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+                OPEN CALCULATOR →
+              </a>
+            </div>
+          </div>
+          
+          <!-- Resource 4 -->
+          <div style="margin-bottom: 48px;">
+            <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">04. The Freedom Audit</div>
+            <p style="font-size: 16px; line-height: 1.7; color: #C4BDB2; margin-bottom: 14px;">
+              Score yourself across the five pillars and find out which one is costing you the most right now.
+            </p>
+            <div>
+              <a href="https://freedomaudit.berichnow.com" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+                TAKE THE AUDIT →
+              </a>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; padding-top: 40px; border-top: 1px solid rgba(184, 115, 51, 0.3); margin-top: 60px;">
+          <p style="font-size: 14px; color: #655d52; margin-bottom: 12px;">
+            Start with the Unbreakable Year. Everything downstream depends on knowing what your ideal life actually costs.
+          </p>
+          <p style="font-size: 13px; color: #655d52; margin-top: 24px;">
+            — Mike Brown<br/>
+            <span style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">Be Rich Now</span>
+          </p>
+        </div>
+        
+      </div>
+    </body>
+    </html>
+  `;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,6 +124,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'API key not configured' }, { status: 500 });
     }
 
+    // Send email via Resend first
+    try {
+      await resend.emails.send({
+        from: 'Be Rich Now <mike@mbrown.co>',
+        replyTo: 'mike@mbrown.co',
+        to: email,
+        subject: 'Your Be Rich Now Resources',
+        html: generateResourcesEmail(),
+      });
+      console.log('[Resources] Email sent successfully via Resend');
+    } catch (emailError) {
+      console.error('[Resources] Resend email error:', emailError);
+      // Don't fail the whole flow if email fails - continue with Kit tagging
+    }
+
     // Create subscriber with custom field for tracking
     const kitResponse = await fetch('https://api.kit.com/v4/subscribers', {
       method: 'POST',
@@ -28,6 +151,7 @@ export async function POST(req: NextRequest) {
         fields: {
           rh_source: 'book-resources',
         },
+        tags: ['resources'], // Add "resources" tag
       }),
     });
 
@@ -41,27 +165,7 @@ export async function POST(req: NextRequest) {
     }
 
     const kitData = await kitResponse.json();
-    console.log('[Resources] Successfully added subscriber:', email);
-
-    // Add "Book Resources" tag (ID: 22420144)
-    // This triggers the Visual Automation you configured in Kit
-    const tagResponse = await fetch('https://api.kit.com/v4/tags/22420144/subscribers', {
-      method: 'POST',
-      headers: {
-        'X-Kit-Api-Key': KIT_API_KEY,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email_address: email,
-      }),
-    });
-
-    if (tagResponse.ok) {
-      console.log('[Resources] Successfully added "Book Resources" tag');
-    } else {
-      const tagError = await tagResponse.json();
-      console.error('[Resources] Failed to add tag:', tagError);
-    }
+    console.log('[Resources] Successfully added subscriber with "resources" tag:', email);
 
     return NextResponse.json({ success: true, subscriber: kitData });
   } catch (error) {
