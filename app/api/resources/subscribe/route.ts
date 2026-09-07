@@ -14,17 +14,17 @@ function generateResourcesEmail(): string {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Your Be Rich Now Resources</title>
     </head>
-    <body style="font-family: Georgia, 'Times New Roman', serif; color: #E8E0D4; background: #1a1815; line-height: 1.7; margin: 0; padding: 0;">
+    <body style="font-family: Georgia, 'Times New Roman', serif; color: #2a2520; background: #ffffff; line-height: 1.7; margin: 0; padding: 0;">
       <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
         
         <!-- Header -->
         <div style="text-align: center; padding: 40px 0 60px; border-bottom: 2px solid #B87333; margin-bottom: 48px;">
           <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 3px; color: #B87333; margin-bottom: 20px; text-transform: uppercase;">Be Rich Now</div>
-          <h1 style="font-size: 36px; font-weight: 400; margin: 0; color: #E8E0D4;">Resources</h1>
+          <h1 style="font-size: 36px; font-weight: 400; margin: 0; color: #2a2520;">Resources</h1>
         </div>
         
         <!-- Intro -->
-        <p style="font-size: 18px; line-height: 1.8; color: #C4BDB2; margin-bottom: 40px; text-align: center;">
+        <p style="font-size: 18px; line-height: 1.8; color: #655d52; margin-bottom: 40px; text-align: center;">
           Reading the book will change how you think about wealth.<br/>Doing the work will change how you live.
         </p>
         
@@ -34,14 +34,14 @@ function generateResourcesEmail(): string {
           <!-- Resource 1 -->
           <div style="margin-bottom: 48px;">
             <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">01. The Unbreakable Year</div>
-            <p style="font-size: 16px; line-height: 1.7; color: #C4BDB2; margin-bottom: 14px;">
+            <p style="font-size: 16px; line-height: 1.7; color: #4a4540; margin-bottom: 14px;">
               Map the life you actually want and price it out month by month until you arrive at your Ideal Spend.
             </p>
             <div>
               <a href="https://berichnow.com/resources/unbreakable-year.html" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
                 OPEN WORKBOOK →
               </a>
-              <span style="color: #655d52; margin: 0 8px;">|</span>
+              <span style="color: #A09B91; margin: 0 8px;">|</span>
               <a href="https://berichnow.com/resources/Unbreakable-Year-Workbook.pdf" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
                 DOWNLOAD PDF
               </a>
@@ -51,14 +51,14 @@ function generateResourcesEmail(): string {
           <!-- Resource 2 -->
           <div style="margin-bottom: 48px;">
             <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">02. Money Stories Workbook</div>
-            <p style="font-size: 16px; line-height: 1.7; color: #C4BDB2; margin-bottom: 14px;">
+            <p style="font-size: 16px; line-height: 1.7; color: #4a4540; margin-bottom: 14px;">
               Surface the inherited scripts running your financial decisions, then name the fear sitting underneath each one.
             </p>
             <div>
               <a href="https://berichnow.com/resources/money-stories.html" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
                 OPEN WORKBOOK →
               </a>
-              <span style="color: #655d52; margin: 0 8px;">|</span>
+              <span style="color: #A09B91; margin: 0 8px;">|</span>
               <a href="https://berichnow.com/resources/Money-Stories-Workbook.pdf" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
                 DOWNLOAD PDF
               </a>
@@ -68,7 +68,7 @@ function generateResourcesEmail(): string {
           <!-- Resource 3 -->
           <div style="margin-bottom: 48px;">
             <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">03. Escape Velocity Wealth Snapshot</div>
-            <p style="font-size: 16px; line-height: 1.7; color: #C4BDB2; margin-bottom: 14px;">
+            <p style="font-size: 16px; line-height: 1.7; color: #4a4540; margin-bottom: 14px;">
               Calculate the number that makes work optional, along with the timeline to reach it down to the month.
             </p>
             <div>
@@ -81,7 +81,7 @@ function generateResourcesEmail(): string {
           <!-- Resource 4 -->
           <div style="margin-bottom: 48px;">
             <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">04. The Freedom Audit</div>
-            <p style="font-size: 16px; line-height: 1.7; color: #C4BDB2; margin-bottom: 14px;">
+            <p style="font-size: 16px; line-height: 1.7; color: #4a4540; margin-bottom: 14px;">
               Score yourself across the five pillars and find out which one is costing you the most right now.
             </p>
             <div>
