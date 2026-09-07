@@ -104,6 +104,9 @@ function generateResourcesEmail(): string {
             — Mike Brown<br/>
             <span style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">Be Rich Now</span>
           </p>
+          <p style="font-size: 13px; color: #A09B91; margin-top: 32px; line-height: 1.5;">
+            It's not you, it's me? No worries - you can <a href="https://8c46a433.unsubscribe.kit-mail3.com/o8ux834vnqaqh60moomhvhqpmwzlpboh97429" style="color: #B87333; text-decoration: underline;">unsubscribe</a>
+          </p>
         </div>
         
       </div>
