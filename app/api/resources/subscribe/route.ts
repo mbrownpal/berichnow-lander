@@ -24,7 +24,7 @@ function generateResourcesEmail(): string {
         </div>
         
         <!-- Intro -->
-        <p style="font-size: 18px; line-height: 1.8; color: #655d52; margin-bottom: 40px; text-align: center;">
+        <p style="font-size: 19px; line-height: 1.8; color: #655d52; margin-bottom: 40px; text-align: center;">
           Reading the book will change how you think about wealth.<br/>Doing the work will change how you live.
         </p>
         
@@ -33,16 +33,17 @@ function generateResourcesEmail(): string {
           
           <!-- Resource 1 -->
           <div style="margin-bottom: 48px;">
-            <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">01. The Unbreakable Year</div>
-            <p style="font-size: 16px; line-height: 1.7; color: #4a4540; margin-bottom: 14px;">
+            <div style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; color: #B87333; margin-bottom: 12px; text-transform: uppercase;">01. The Unbreakable Year</div>
+            <p style="font-size: 17px; line-height: 1.7; color: #4a4540; margin-bottom: 18px;">
               Map the life you actually want and price it out month by month until you arrive at your Ideal Spend.
             </p>
-            <div>
-              <a href="https://berichnow.com/resources/unbreakable-year.html" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+            <div style="margin-bottom: 8px;">
+              <a href="https://berichnow.com/resources/unbreakable-year.html" style="display: inline-block; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #B87333; text-decoration: underline; padding: 8px 0; font-weight: bold;">
                 OPEN WORKBOOK →
               </a>
-              <span style="color: #A09B91; margin: 0 8px;">|</span>
-              <a href="https://berichnow.com/resources/Unbreakable-Year-Workbook.pdf" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+            </div>
+            <div>
+              <a href="https://berichnow.com/resources/Unbreakable-Year-Workbook.pdf" style="display: inline-block; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #B87333; text-decoration: underline; padding: 8px 0; font-weight: bold;">
                 DOWNLOAD PDF
               </a>
             </div>
@@ -50,16 +51,17 @@ function generateResourcesEmail(): string {
           
           <!-- Resource 2 -->
           <div style="margin-bottom: 48px;">
-            <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">02. Money Stories Workbook</div>
-            <p style="font-size: 16px; line-height: 1.7; color: #4a4540; margin-bottom: 14px;">
+            <div style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; color: #B87333; margin-bottom: 12px; text-transform: uppercase;">02. Money Stories Workbook</div>
+            <p style="font-size: 17px; line-height: 1.7; color: #4a4540; margin-bottom: 18px;">
               Surface the inherited scripts running your financial decisions, then name the fear sitting underneath each one.
             </p>
-            <div>
-              <a href="https://berichnow.com/resources/money-stories.html" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+            <div style="margin-bottom: 8px;">
+              <a href="https://berichnow.com/resources/money-stories.html" style="display: inline-block; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #B87333; text-decoration: underline; padding: 8px 0; font-weight: bold;">
                 OPEN WORKBOOK →
               </a>
-              <span style="color: #A09B91; margin: 0 8px;">|</span>
-              <a href="https://berichnow.com/resources/Money-Stories-Workbook.pdf" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+            </div>
+            <div>
+              <a href="https://berichnow.com/resources/Money-Stories-Workbook.pdf" style="display: inline-block; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #B87333; text-decoration: underline; padding: 8px 0; font-weight: bold;">
                 DOWNLOAD PDF
               </a>
             </div>
@@ -67,12 +69,12 @@ function generateResourcesEmail(): string {
           
           <!-- Resource 3 -->
           <div style="margin-bottom: 48px;">
-            <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">03. Escape Velocity Wealth Snapshot</div>
-            <p style="font-size: 16px; line-height: 1.7; color: #4a4540; margin-bottom: 14px;">
+            <div style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; color: #B87333; margin-bottom: 12px; text-transform: uppercase;">03. Escape Velocity Wealth Snapshot</div>
+            <p style="font-size: 17px; line-height: 1.7; color: #4a4540; margin-bottom: 18px;">
               Calculate the number that makes work optional, along with the timeline to reach it down to the month.
             </p>
             <div>
-              <a href="https://berichnow.com/resources/calculator" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+              <a href="https://berichnow.com/resources/calculator" style="display: inline-block; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #B87333; text-decoration: underline; padding: 8px 0; font-weight: bold;">
                 OPEN CALCULATOR →
               </a>
             </div>
@@ -80,12 +82,12 @@ function generateResourcesEmail(): string {
           
           <!-- Resource 4 -->
           <div style="margin-bottom: 48px;">
-            <div style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #B87333; margin-bottom: 8px; text-transform: uppercase;">04. The Freedom Audit</div>
-            <p style="font-size: 16px; line-height: 1.7; color: #4a4540; margin-bottom: 14px;">
+            <div style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; color: #B87333; margin-bottom: 12px; text-transform: uppercase;">04. The Freedom Audit</div>
+            <p style="font-size: 17px; line-height: 1.7; color: #4a4540; margin-bottom: 18px;">
               Score yourself across the five pillars and find out which one is costing you the most right now.
             </p>
             <div>
-              <a href="https://freedomaudit.berichnow.com" style="font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #B87333; text-decoration: none;">
+              <a href="https://freedomaudit.berichnow.com" style="display: inline-block; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #B87333; text-decoration: underline; padding: 8px 0; font-weight: bold;">
                 TAKE THE AUDIT →
               </a>
             </div>
@@ -95,10 +97,10 @@ function generateResourcesEmail(): string {
         
         <!-- Footer -->
         <div style="text-align: center; padding-top: 40px; border-top: 1px solid rgba(184, 115, 51, 0.3); margin-top: 60px;">
-          <p style="font-size: 14px; color: #655d52; margin-bottom: 12px;">
+          <p style="font-size: 16px; color: #655d52; margin-bottom: 12px; line-height: 1.6;">
             Start with the Unbreakable Year. Everything downstream depends on knowing what your ideal life actually costs.
           </p>
-          <p style="font-size: 13px; color: #655d52; margin-top: 24px;">
+          <p style="font-size: 15px; color: #655d52; margin-top: 24px;">
             — Mike Brown<br/>
             <span style="font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">Be Rich Now</span>
           </p>
