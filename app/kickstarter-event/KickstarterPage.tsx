@@ -326,7 +326,7 @@ export default function KickstarterPage({ kickstarterUrl }: KickstarterPageProps
 
         <p className="lede fade d2">For anyone who has stood on the mountain of success and wondered whether this is really it.</p>
 
-        {/* Stats from Kickstarter daily email - Last checked 2026-09-29 6:00 PM UTC (no changes) */}
+        {/* Stats from Kickstarter daily email - Last checked 2026-10-02 6:00 PM UTC (campaign complete, funds sent Oct 1) */}
         <div className="stats fade d3">
           <div className="stat">
             <div className="stat-num">327%</div>
