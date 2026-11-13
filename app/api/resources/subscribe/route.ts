@@ -156,7 +156,6 @@ export async function POST(req: NextRequest) {
         fields: {
           rh_source: 'book-resources',
         },
-        tags: ['resources'], // Add "resources" tag
       }),
     });
 
@@ -170,7 +169,36 @@ export async function POST(req: NextRequest) {
     }
 
     const kitData = await kitResponse.json();
-    console.log('[Resources] Successfully added subscriber with "resources" tag:', email);
+    const subscriberId = kitData.subscriber?.id;
+    console.log('[Resources] Kit subscriber created:', email, 'ID:', subscriberId);
+
+    // Tag the subscriber with 'Book Resources' tag (ID: 22420144).
+    // Kit ignores a tags array on subscriber create, so apply the tag in a second request.
+    if (subscriberId) {
+      try {
+        const tagId = 22420144; // 'Book Resources' tag
+        const tagResponse = await fetch(
+          `https://api.kit.com/v4/tags/${tagId}/subscribers/${subscriberId}`,
+          {
+            method: 'POST',
+            headers: {
+              'X-Kit-Api-Key': KIT_API_KEY,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+          }
+        );
+        if (!tagResponse.ok) {
+          const tagErrorData = await tagResponse.text();
+          console.error('[Resources] Kit tagging error:', tagResponse.status, tagErrorData);
+        } else {
+          console.log('[Resources] Kit subscriber tagged with: Book Resources');
+        }
+      } catch (tagError) {
+        console.error('[Resources] Kit tagging error:', tagError);
+        // Non-critical - subscriber was created; still return success
+      }
+    }
 
     return NextResponse.json({ success: true, subscriber: kitData });
   } catch (error) {
