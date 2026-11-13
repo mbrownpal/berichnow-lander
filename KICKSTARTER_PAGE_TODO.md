@@ -43,32 +43,11 @@ git commit -m "Add Be Rich Now book cover for Kickstarter page"
 git push origin main
 ```
 
-### 3. Update Campaign Stats
+### 3. Campaign stats are final
 
-As the campaign progresses, update these numbers in:
-`app/kickstarter-event/KickstarterPage.tsx` (lines ~356-368)
-
-```tsx
-<div className="stats fade d3">
-  <div className="stat">
-    <div className="stat-num">171%</div>  {/* Update % funded */}
-    <div className="stat-label">Funded</div>
-  </div>
-  <div className="stat">
-    <div className="stat-num">54</div>  {/* Update backer count */}
-    <div className="stat-label">Backers</div>
-  </div>
-  <div className="stat">
-    <div className="stat-num">29</div>  {/* Update days remaining */}
-    <div className="stat-label">Days left</div>
-  </div>
-</div>
-```
-
-Also update the closing date (line ~376):
-```tsx
-<p className="btn-note">The campaign closes September 17</p>
-```
+The campaign has ended. Leave the published numbers in
+`app/kickstarter-event/KickstarterPage.tsx` at 327% funded and 220 backers.
+Do not schedule further updates.
 
 ## 📊 Tracking
 
