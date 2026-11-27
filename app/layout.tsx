@@ -4,7 +4,8 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Be Rich Now',
-  description: 'How to want everything you have. Coming Fall 2026.',
+  description:
+    'How to want everything you have. Launches December 15, 2026. The first chapter is free.',
 };
 
 export default function RootLayout({

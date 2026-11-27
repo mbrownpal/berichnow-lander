@@ -1,6 +1,83 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const LAUNCH_AT = Date.parse('2026-12-15T07:00:00.000Z');
+
+type Remaining = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
+
+function remainingUntil(now: number): Remaining | 'live' {
+  const diff = LAUNCH_AT - now;
+  if (diff <= 0) return 'live';
+
+  const totalSeconds = Math.floor(diff / 1000);
+  return {
+    days: Math.floor(totalSeconds / 86400),
+    hours: Math.floor((totalSeconds % 86400) / 3600),
+    minutes: Math.floor((totalSeconds % 3600) / 60),
+    seconds: totalSeconds % 60,
+  };
+}
+
+function pad(value: number) {
+  return String(value).padStart(2, '0');
+}
+
+function LaunchCountdown() {
+  const [now, setNow] = useState<number | null>(null);
+
+  useEffect(() => {
+    let intervalId = 0;
+    const tick = () => setNow(Date.now());
+    tick();
+    const timeoutId = window.setTimeout(() => {
+      tick();
+      intervalId = window.setInterval(tick, 1000);
+    }, 1000 - (Date.now() % 1000));
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.clearInterval(intervalId);
+    };
+  }, []);
+
+  const parts = now === null ? null : remainingUntil(now);
+
+  if (parts === 'live') {
+    return <p className="countdown-live">Be Rich Now is live.</p>;
+  }
+
+  const units = [
+    { label: 'Days', value: parts ? pad(parts.days) : '00' },
+    { label: 'Hours', value: parts ? pad(parts.hours) : '00' },
+    { label: 'Minutes', value: parts ? pad(parts.minutes) : '00' },
+    { label: 'Seconds', value: parts ? pad(parts.seconds) : '00' },
+  ];
+
+  return (
+    <div
+      className={parts ? 'countdown' : 'countdown is-pending'}
+      role="timer"
+      aria-label={
+        parts
+          ? `${parts.days} days, ${parts.hours} hours, ${parts.minutes} minutes, and ${parts.seconds} seconds until December 15, 2026`
+          : 'Countdown to December 15, 2026'
+      }
+    >
+      {units.map((unit) => (
+        <div className="unit" key={unit.label}>
+          <span className="num">{unit.value}</span>
+          <span className="unit-label">{unit.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -122,7 +199,67 @@ export default function Home() {
           font-size: clamp(19px, 1.6vw, 22px);
           color: var(--text-subtle);
           line-height: 1.5;
-          margin-bottom: 32px;
+          margin-bottom: 28px;
+        }
+
+        .countdown {
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 22px;
+          width: max-content;
+          max-width: 100%;
+          margin: 0 auto 16px;
+        }
+
+        .countdown .unit {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          min-width: 58px;
+          flex: 0 0 auto;
+        }
+
+        .countdown .num {
+          font-family: var(--font-mono);
+          font-variant-numeric: tabular-nums;
+          font-size: 32px;
+          font-weight: 400;
+          letter-spacing: 0.04em;
+          line-height: 1;
+          color: var(--copper);
+          min-width: 2.4ch;
+        }
+
+        .countdown.is-pending .num {
+          opacity: 0.35;
+        }
+
+        .countdown .unit-label {
+          margin-top: 8px;
+          font-family: var(--font-mono);
+          font-size: 9px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--text-subtle);
+        }
+
+        .countdown-live {
+          margin: 0 0 16px;
+          font-family: var(--font-mono);
+          font-size: 12px;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--copper);
+        }
+
+        .launch-note {
+          font-family: var(--font-body);
+          font-size: 19px;
+          line-height: 1.55;
+          color: var(--text-body);
+          max-width: 480px;
+          margin: 0 auto 32px;
         }
 
         .hero-copy .author {
@@ -479,6 +616,11 @@ export default function Home() {
           .hero-copy h1.title {
             font-size: 48px;
           }
+          .countdown,
+          .launch-note {
+            margin-left: 0;
+            margin-right: auto;
+          }
           .hero-copy .opening {
             font-size: 19px;
             line-height: 1.75;
@@ -513,7 +655,30 @@ export default function Home() {
           }
           .hero-copy .subtitle {
             font-size: 19px;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
+          }
+          .countdown {
+            gap: 12px;
+            margin-bottom: 14px;
+          }
+          .countdown .unit {
+            min-width: 0;
+          }
+          .countdown .num {
+            font-size: 24px;
+          }
+          .countdown .unit-label {
+            font-size: 8px;
+            letter-spacing: 0.14em;
+          }
+          .countdown-live {
+            font-size: 11px;
+            letter-spacing: 0.16em;
+          }
+          .launch-note {
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 24px;
           }
           .hero-copy .author {
             font-size: 10px;
@@ -585,12 +750,16 @@ export default function Home() {
           <div className="hero-copy">
             <div className="label">
               <span className="bar"></span>
-              <span>Coming Fall 2026</span>
+              <span>Launches December 15, 2026</span>
             </div>
             <h1 className="title">
               Be <em>Rich</em> Now
             </h1>
             <p className="subtitle">How to want everything you have.</p>
+            <LaunchCountdown />
+            <p className="launch-note">
+              The first chapter is free right now. When the book goes live on December 15, the people on this list get in first, with access nobody else gets.
+            </p>
             <div className="author">
               <span className="by">A book by</span>Michael Winslow Brown
             </div>
@@ -675,7 +844,7 @@ export default function Home() {
             {error && <p className="error-message">{error}</p>}
 
             <p className="fineprint">
-              You'll also be first to know when the book drops. No spam. Just the book.
+              Chapter one hits your inbox today. On December 15 you get exclusive early access. No spam.
             </p>
           </div>
         </section>
